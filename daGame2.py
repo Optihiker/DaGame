@@ -36,25 +36,29 @@ class PotionShop:
 # we have to put the LongSword class ABOVE the WeaponShop class
 class WeaponShop:
     def __init__(self):
-        weapon = None
-        inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($50)\n")
+        item = None
+        inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($50)\n3.Chestpiece($30)\n4.Helmet($30)\n")
         if mainCharacter.money <50: 
             print "What! you don't have enough money! Cheapskate! You only have this much money:"
             print mainCharacter.money 
         else: 
             if inpt == "1":
-                weapon = LongSword()
-                mainCharacter.equip(LongSword)
+                item = LongSword()
             if inpt == "2":
-                weapon = Bow()
-                mainCharacter.equip(Bow)
+                item = Bow()
+            if inpt == "3":
+                item = Chestpiece()
+            if inpt == "4":
+                item = Helmet()
+
+
             inpt = raw_input ("would you still like to by this?\n1.yes\n2.no\n")
             if inpt == "1" or inpt == "yes":
-                mainCharacter.money = mainCharacter.money - 50
-                mainCharacter.Inventory.Addtobag(weapon)
+                mainCharacter.money = mainCharacter.money - item.cost
+                mainCharacter.Inventory.Addtobag(item)
                 print "Thanks, come again!"
             if inpt == "2" or inpt == "no":
-                pass 
+                pass
  
 
 class Potion:
@@ -63,6 +67,7 @@ class Potion:
 class Inventory:
     list = {}
     def Addtobag(self, item):
+        print item.__class__
         #make sure >0spots
         self.list[id(item)] = item
     def Openbag(self):
@@ -94,14 +99,10 @@ class Healthpotion(Potion):
 class Suicidepotion(Potion):
     use = "KILLS!!!!!"
     def use():
-        if mainCharacter.Suicidepotion >1:
-            mainCharacter.Suicidepotion - 1
-        else:
-            print "Hacker!!!"
-<<<<<<< HEAD
-    
-            
-=======
+    if mainCharacter.Suicidepotion >1:
+        mainCharacter.Suicidepotion - 1
+    else:
+        print "Hacker!!!"
 
 
 class Armor():
@@ -123,25 +124,28 @@ class Chestpiece(Armor):
     name = "Chestpiece"
 
 
->>>>>>> 76a71ce43a6bf9937ebcbcdb0d149a409eb55e36
 class Weapon:
     crit = 0
+    cost = 0
     name = "Nothing yet"
     damage = 0
-               
-    def equip():
+    def use(self):
+        mainCharacter.equip(self)         
+    def equip(self):
         mainCharacter.equip(self)
     def use():
         mainCharacter.equip(self)
 
 class LongSword(Weapon):
     damage = 50
+    cost = 50
     crit = 10
     name = "Long Sword"
 
 
 class Bow(Weapon):
     damage = 75
+    cost = 50
     crit = 1
     name = "Bow"
 
@@ -176,6 +180,7 @@ class Battle:
 
                     for enemy in list:
                         print index,
+                   
                         print enemy.__class__.__name__, enemy.health
                         index = index + 1
 
@@ -218,34 +223,14 @@ class Enemy:
     damage = 1
     name = "Your name here"
     def attack(self, enemy):
-        enemy.health = enemy.health - self.damage
-        print "Your foe dealt %d damage" % self.damage
-
-        #if type(equipment) is Armor:
-                
-                #if type(equipment) is Helmet:
-                    #self.helmet = equipment 
-
-                #if type(equipment) is Chestpiece:
-                    #self.chestpiece = equipment
-
-            #if type(equipment) is Weapon:
-                #self.weapon = equipment
-            
-            #FYI: this is at the bottom of class character
-
-
-
-
-
-
-            #totaldamage = self.damage
-            #if enemy.chestpiece != None:
-               # totaldamage = totaldamage - enemy.chestpiece.impactpower
-            #if enemy.helmet != None:
-              #  totaldamage = totaldamage - enemy.helmet.impactpower
-            #nemy.health = enemy.health - totaldamage
-            #print "Your foe dealt %d damage" % totaldamage
+        totaldamage = self.damage
+        if enemy.chestpiece != None:
+            totaldamage = totaldamage - enemy.chestpiece.impactpower
+        if enemy.helmet != None:
+            totaldamage = totaldamage - enemy.helmet.impactpower
+        enemy.health = enemy.health - totaldamage
+        print "Your foe dealt %d damage" % totaldamage
+      
 class Zombie(Enemy):
     health = 100
     damage = 5
@@ -273,6 +258,8 @@ class Character:
     city = None
     money = 100
     weapon = None
+    chestpiece = None
+    helmet = None
     mana = 100 
     damage = 5
     Inventory = Inventory()
@@ -310,8 +297,21 @@ class Character:
         self.city = city
     def getCity():
         print self.city.name 
-    def equip(self, weapon):
-        self.weapon = weapon
+    def equip(self, equipment):
+        
+        if type(equipment) is Armor:
+            
+            if type(equipment) is Helmet:
+                self.helmet = equipment 
+
+            if type(equipment) is Chestpiece:
+                self.chestpiece = equipment
+
+        if type(equipment) is Weapon:
+            self.weapon = equipment
+
+        print "you equiped the %s" %equipment.__class__
+        
     #We want to to use this method to make sure our code works.
     #it should show off the weapon we bought OR
     #nothing at all
@@ -335,7 +335,7 @@ class Knight(Character):
             return
         elif mainCharacter.mana >15:
             mainCharacter.mana = mainCharacter.mana - 15
-            if random.randint(1,6) >3:
+            if random.randint(1,6) >=3:
                 enemy.health = enemy.health - 200
                 print "you dealt %d damage and succesfully completeted your special move!" % 200
             elif random.randint(1,6) <3:
@@ -425,8 +425,4 @@ while True:
 #3.give different classes special moves
 #4.add sound effects
 #5.create and actual story line  
-<<<<<<< HEAD
-=======
 # DaGame_py
-# DaGame_Py
->>>>>>> 76a71ce43a6bf9937ebcbcdb0d149a409eb55e36

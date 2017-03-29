@@ -104,6 +104,7 @@ class Suicidepotion(Potion):
         else:
             print "Hacker!!!"
 
+
 class Armor():
     impactpower = 0
     cost = 0
@@ -175,7 +176,7 @@ class Battle:
 
                 if inpt == "1" or inpt == "attack" or inpt == "2":
                     index = 1         
-                    print list           
+                    print list
 
                     for enemy in list:
                         print index,
@@ -193,6 +194,7 @@ class Battle:
                 if inpt == "1":
             
                     mainCharacter.attack(list[enemyNum - 1])
+
                 elif inpt == "2":
                     mainCharacter.specialMove(list[enemyNum - 1])
 

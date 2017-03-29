@@ -176,7 +176,7 @@ class Battle:
 
                 if inpt == "1" or inpt == "attack" or inpt == "2":
                     index = 1         
-                    print list           
+                    print list
 
                     for enemy in list:
                         print index,
@@ -189,7 +189,7 @@ class Battle:
                     try:
                         enemyNum = int(enemyNum)
                     except:
-                         pass
+                        pass
 
                 if inpt == "1":
                     mainCharacter.attack(list[enemyNum - 1])

@@ -99,10 +99,10 @@ class Healthpotion(Potion):
 class Suicidepotion(Potion):
     use = "KILLS!!!!!"
     def use():
-    if mainCharacter.Suicidepotion >1:
-        mainCharacter.Suicidepotion - 1
-    else:
-        print "Hacker!!!"
+        if mainCharacter.Suicidepotion >1:
+            mainCharacter.Suicidepotion - 1
+        else:
+            print "Hacker!!!"
 
 
 class Armor():
@@ -187,16 +187,14 @@ class Battle:
                     enemyNum = raw_input("What enemey(s) would you like to fight? Enter a number based on the info from above:\n")
 
                     try:
-                        enemyNum = int(inpt)
+                        enemyNum = int(enemyNum)
                     except:
                          pass
 
                 if inpt == "1":
                     mainCharacter.attack(list[enemyNum - 1])
                 elif inpt =="2":
-
                     mainCharacter.specialMove(list[enemyNum - 1])
-
                 elif inpt =="3":
                     mainCharacter.Inventory.Openbag()
 

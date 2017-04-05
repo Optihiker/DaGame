@@ -79,8 +79,6 @@ class Inventory:
         self.list[int(key)].equip()
 
 
-
-
 class Manapotion(Potion):
     equip = "increase damage by ten"
 
@@ -97,6 +95,7 @@ class Healthpotion(Potion):
             mainCharacter.Healthpotion - 1
         else:
             print "Hacker!!!"
+
 class Suicidepotion(Potion):
     equip = "KILLS!!!!!"
     def equip():
@@ -126,10 +125,10 @@ class Weapon:
     crit = 0
     cost = 0
     name = "Nothing yet"
-    damage = 0
+    damage = 0      
     def equip(self):
         mainCharacter.equip(self)
-   
+
 class LongSword(Weapon):
     damage = 50
     cost = 50
@@ -192,7 +191,9 @@ class Battle:
                 elif inpt == "2":
                     mainCharacter.specialMove(list[enemyNum - 1])
 
+
                 elif inpt == "3":
+
                     mainCharacter.Inventory.Openbag()
 
                    
@@ -302,11 +303,13 @@ class Character:
             if isinstance(equipment, Chestpiece): 
                 self.chestpiece = equipment
                 print "MONEY" 
+
         if isinstance(equipment, Weapon):
             self.weapon = equipment
             print "MONEY" 
 
         print "you equiped the %s" %equipment.__class__
+
         
     #We want to to use this method to make sure our code works.
     #it should show off the weapon we bought OR
@@ -319,13 +322,16 @@ class Character:
             print self.weapon.name
 
         if self.chestpiece == None:
+
             print "Oh shoot, I don't even have a chestpiece!"
+
         else:
             print "Ha! Ha! Check out my cool"
             print self.chestpiece.name
 
         if self.helmet == None:
             print "Oh shoot, I don't even have a helmet!"
+
         else:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name

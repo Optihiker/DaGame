@@ -7,7 +7,7 @@ class City:
         self.name = name
 
 class PotionShop:
-    def __init__(self):
+    def __init__(self): 
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
@@ -75,30 +75,31 @@ class Inventory:
             print key
             print self.list[key].__class__.__name__
         inpt = raw_input("What item would you like to take from your endless bag of junk: ")
-        self.list[int(inpt)].use()
+        print self.list[int(key)]
+        self.list[int(key)].equip()
 
-       
+
+
+
 class Manapotion(Potion):
-    use = "increase damage by ten"
+    equip = "increase damage by ten"
 
-    def use():
+    def equip():
         if mainCharacter.Manapotion >1:
             mainCharacter.Manapotion - 1
         else:
             print "Hacker!!!"
 
- 
-
 class Healthpotion(Potion):
-    use = "increase health by 100"
-    def use():
+    equip = "increase health by 100"
+    def equip():
         if mainCharacter.Healthpotion >1:
             mainCharacter.Healthpotion - 1
         else:
             print "Hacker!!!"
 class Suicidepotion(Potion):
-    use = "KILLS!!!!!"
-    def use():
+    equip = "KILLS!!!!!"
+    def equip():
         if mainCharacter.Suicidepotion >1:
             mainCharacter.Suicidepotion - 1
         else:
@@ -108,8 +109,6 @@ class Suicidepotion(Potion):
 class Armor():
     impactpower = 0
     cost = 0
-    def use(self):
-        mainCharacter.equip(self)
     def equip(self):
         mainCharacter.equip(self)
 
@@ -123,19 +122,14 @@ class Chestpiece(Armor):
     cost = 30
     name = "Chestpiece"
 
-
 class Weapon:
     crit = 0
     cost = 0
     name = "Nothing yet"
     damage = 0
-    def use(self):
-        mainCharacter.equip(self)         
     def equip(self):
         mainCharacter.equip(self)
-    def use():
-        mainCharacter.equip(self)
-
+   
 class LongSword(Weapon):
     damage = 50
     cost = 50
@@ -198,7 +192,7 @@ class Battle:
                 elif inpt == "2":
                     mainCharacter.specialMove(list[enemyNum - 1])
 
-                elif inpt =="3":
+                elif inpt == "3":
                     mainCharacter.Inventory.Openbag()
 
                    
@@ -300,16 +294,17 @@ class Character:
         print self.city.name 
     def equip(self, equipment):
         
-        if type(equipment) is Armor:
+        if isinstance(equipment, Armor):
             
-            if type(equipment) is Helmet:
-                self.helmet = equipment 
-
-            if type(equipment) is Chestpiece:
+            if isinstance(equipment, Helmet):
+                self.helmet = equipment
+                print "MONEY" 
+            if isinstance(equipment, Chestpiece): 
                 self.chestpiece = equipment
-
-        if type(equipment) is Weapon:
+                print "MONEY" 
+        if isinstance(equipment, Weapon):
             self.weapon = equipment
+            print "MONEY" 
 
         print "you equiped the %s" %equipment.__class__
         
@@ -322,6 +317,18 @@ class Character:
         else:
             print "Ha! Ha! Check out my cool"
             print self.weapon.name
+
+        if self.chestpiece == None:
+            print "Oh shoot, I don't even have a chestpiece!"
+        else:
+            print "Ha! Ha! Check out my cool"
+            print self.chestpiece.name
+
+        if self.helmet == None:
+            print "Oh shoot, I don't even have a helmet!"
+        else:
+            print "Ha! Ha! Check out my cool"
+            print self.helmet.name
 
         
 class Devil(Character):

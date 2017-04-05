@@ -249,7 +249,7 @@ class Character:
     blockChance = 50
     health = 100
     city = None
-    money = 100000
+    money = 100
     weapon = None
     chestpiece = None
     helmet = None
@@ -301,7 +301,6 @@ class Character:
                 self.chestpiece = equipment
 
         if isinstance(equipment, Weapon):
-            print "$$$$$$$$$$"
             self.weapon = equipment
 
         print "you equiped the %s" %equipment.__class__

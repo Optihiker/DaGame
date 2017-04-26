@@ -27,10 +27,10 @@ class PotionShop:
                 pass #add info later.
             if inpt == "2" or inpt == "Buy":
                 if mainCharacter.Inventory.Addtobag(potion):
-                    print "Your new potion has been placed in the Inventory. Just don't kill yourself!"
+                    print "Your new potion has been placed in your inventory. Just dont kill yourself!"
                     mainCharacter.money = mainCharacter.money - 50
                 else:
-                    print "You don't have enough space! Wackjob."
+                    print "You don't have enough space! Wackjob"
                 print "Thanks, come again!"
 
       
@@ -53,7 +53,6 @@ class WeaponShop:
             if inpt == "4":
                 item = Helmet()
 
-
             inpt = raw_input ("would you still like to by this?\n1.yes\n2.no\n")
             if inpt == "1" or inpt == "yes":
                 if mainCharacter.Inventory.Addtobag(item):
@@ -66,37 +65,32 @@ class WeaponShop:
                 pass
  
 
-class Inventory:
-    bag = {1 : None, 2 : None, 3 : None, 4 : None, 5 : None, 6 : None, 7 : None, 8 : None, 9 : None, 10 : None}
 
+class Inventory:
+    bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
-        print item.__class__
-        #make sure >0spots
         for slot in self.bag:
             if self.bag[slot] == None:
                 self.bag[slot] = item
                 return True
-                   
         return False
-
-
-            #elif self.bag[slot] == 
+            
     def Openbag(self):
         for key in self.bag:
             print key
             print self.bag[key].__class__.__name__
-        inpt = raw_input("What item would you like to take from your endless bag of junk:\n")
+        inpt = raw_input("What item would you like to take from your endless bag of junk: ")
         key = int(inpt)
         self.bag[key].equip(key)
+
 class Potion:
     def equip(self, key):
-        pass
+        pass 
+
 class Manapotion(Potion):
-    
     def equip(self, key):
         mainCharacter.mana = mainCharacter.mana + 100
         Inventory.bag[key] = None
-
 
 class Healthpotion(Potion):
     def equip(self, key):
@@ -208,7 +202,7 @@ class Weapon:
     crit = 0
     cost = 0
     name = "Nothing yet"
-    damage = 50      
+    damage = 0      
     def equip(self, key):
         mainCharacter.equip(self)
 
@@ -327,7 +321,7 @@ class Character:
     blockChance = 50
     health = 100
     city = None
-    money = 10000
+    money = 100
     weapon = None
     chestpiece = None
     helmet = None

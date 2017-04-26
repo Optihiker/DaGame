@@ -249,7 +249,7 @@ class Character:
     blockChance = 50
     health = 100
     city = None
-    money = 1000000
+    money = 100000
     weapon = None
     chestpiece = None
     helmet = None

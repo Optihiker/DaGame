@@ -26,8 +26,11 @@ class PotionShop:
             if inpt == "1" or inpt == "know more" or inpt == "Know more":
                 pass #add info later.
             if inpt == "2" or inpt == "Buy":
-                mainCharacter.money = mainCharacter.money - 50
-                mainCharacter.Inventory.Addtobag(potion)
+                if mainCharacter.Inventory.Addtobag(potion):
+                    print "Your new potion has been placed in your inventory. Just dont kill yourself!"
+                    mainCharacter.money = mainCharacter.money - 50
+                else:
+                    print "You don't have enough space! Wackjob"
                 print "Thanks, come again!"
 
       
@@ -51,65 +54,67 @@ class WeaponShop:
             if inpt == "4":
                 item = Helmet()
 
-
             inpt = raw_input ("would you still like to by this?\n1.yes\n2.no\n")
             if inpt == "1" or inpt == "yes":
-                mainCharacter.money = mainCharacter.money - item.cost
-                mainCharacter.Inventory.Addtobag(item)
+                
+                if mainCharacter.Inventory.Addtobag(item):
+                    print "Your new weapon has been placed in your inventory, make sure to equip it!"
+                    mainCharacter.money = mainCharacter.money - item.cost
+                else: 
+                    print "You don't have enough space!"
+
+
                 print "Thanks, come again!"
             if inpt == "2" or inpt == "no":
                 pass
  
 
-class Potion:
-    def equip():
-        mainCharacter.equip(potion)
+
 class Inventory:
-    list = {}
+    bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
-        print item.__class__
-        #make sure >0spots
-        self.list[id(item)] = item
+        for slot in self.bag:
+            if self.bag[slot] == None:
+                self.bag[slot] = item
+                return True
+        return False
+            
     def Openbag(self):
-        for key in self.list:
+        for key in self.bag:
             print key
-            print self.list[key].__class__.__name__
+            print self.bag[key].__class__.__name__
         inpt = raw_input("What item would you like to take from your endless bag of junk: ")
-        self.list[int(inpt)].equip()
+        key = int(inpt)
+        self.bag[key].equip(key)
         
 
+class Potion:
+    def equip(self, key):
+        pass 
 
-       
 class Manapotion(Potion):
-    equip = "increase damage by ten"
-
-    def equip():
-        if mainCharacter.Manapotion >1:
-            mainCharacter.Manapotion - 1
-        else:
-            print "Hacker!!!"
+    def equip(self, key):
+        mainCharacter.mana = mainCharacter.mana + 100
+        Inventory.bag[key] = None
 
 class Healthpotion(Potion):
-    equip = "increase health by 100"
-    def equip():
-        if mainCharacter.Healthpotion >1:
-            mainCharacter.Healthpotion - 1
-        else:
-            print "Hacker!!!"
+    def equip(self, key):
+        mainCharacter.health = mainCharacter.health + 100
+        Inventory.bag[key] = None
 
 class Suicidepotion(Potion):
-    equip = "KILLS!!!!!"
-    def equip():
-        if mainCharacter.Suicidepotion >1:
-            mainCharacter.Suicidepotion - 1
-        else:
-            print "Hacker!!!"
+    def equip(self, key):
+        mainCharacter.health = 0
+        Inventory.bag[key] = None
+        print "You took the easy way out!"
+
+
 
 
 class Armor():
     impactpower = 0
     cost = 0
-    def equip(self):
+    def equip(self, key):
         mainCharacter.equip(self)
 
 class Helmet(Armor):
@@ -128,7 +133,7 @@ class Weapon:
     cost = 0
     name = "Nothing yet"
     damage = 0      
-    def equip(self):
+    def equip(self, key):
         mainCharacter.equip(self)
 
 class LongSword(Weapon):
@@ -242,14 +247,11 @@ class Barbarian(Enemy):
     
 
 class Character:
-    Manapotion = 0
-    Healthpotion = 0
-    Suicidepotion = 0
     dodgeChance = 50
     blockChance = 50
     health = 100
     city = None
-    money = 100
+    money = 10000000
     weapon = None
     chestpiece = None
     helmet = None
@@ -302,6 +304,7 @@ class Character:
 
         if isinstance(equipment, Weapon):
             self.weapon = equipment
+
 
         print "you equiped the %s" %equipment.__class__
 

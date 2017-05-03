@@ -74,9 +74,11 @@ class Inventory:
     bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
         for slot in self.bag:
-            if self.bag[slot] == None:
+            if self.bag[slot] != None:
                 self.bag[slot] = item
                 return True
+            else:
+                print "Wah, wah, wah..."
         return False
             
     def Openbag(self):

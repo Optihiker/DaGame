@@ -90,6 +90,7 @@ class Inventory:
 class Potion:
     def equip(self, key):
         pass
+        
 class Manapotion(Potion):
     def equip(self, key):
         mainCharacter.mana = mainCharacter.mana + 100

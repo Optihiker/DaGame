@@ -87,7 +87,10 @@ class Inventory:
             print self.bag[key].__class__.__name__
         inpt = raw_input("What item would you like to take from your endless bag of junk: ")
         key = int(inpt)
-        self.bag[key].equip(key)
+        if self.bag[key] != None:
+            self.bag[key].equip(key)
+        else:
+            print "Pick again! There's no item in that spot!"
         
 class Potion:
     def equip(self, key):
@@ -105,12 +108,87 @@ class Healthpotion(Potion):
 
 class Suicidepotion(Potion):
     def equip(self, key):
-        mainCharacter.health = 0
-        Inventory.bag[key] = None
-        print "You took the easy way out!"
-
-
-
+        raw_input ('would you like to die?\n 1. Yes\n 2. No')
+        if inpt == "yes":
+            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+            if inpt == "":
+                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                if inpt == "":
+                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                    if inpt == "":
+                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                        if inpt == "":
+                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                            if inpt == "":
+                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                if inpt == "":
+                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                    if inpt == "":
+                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                        if inpt == "":
+                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                            if inpt == "":
+                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                if inpt == "":
+                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                    if inpt == "":
+                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                        if inpt == "":
+                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                            if inpt == "yes":
+                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                if inpt == "":
+                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                    if inpt == "":
+                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                        if inpt == "":
+                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                            if inpt == "":
+                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                if inpt == "":
+                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                    if inpt == "":
+                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                        if inpt == "":
+                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                            if inpt == "":
+                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                if inpt == "":
+                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                    if inpt == "":
+                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                        if inpt == "":
+                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                            if inpt == "":
+                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                if inpt == "yes":
+                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                    if inpt == "":
+                                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                        if inpt == "":
+                                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                            if inpt == "":
+                                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                if inpt == "":
+                                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                    if inpt == "":
+                                                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                        if inpt == "":
+                                                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                            if inpt == "":
+                                                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                                if inpt == "":
+                                                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                                    if inpt == "":
+                                                                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                                        if inpt == "":
+                                                                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                                            if inpt == "":
+                                                                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+                                                                                                                                                                if inpt == "":
+                                                                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
+        if inpt == "no":
+            print ""
 
 class Armor():
     impactpower = 0
@@ -207,19 +285,28 @@ class Battle:
                         mainCharacter.money = mainCharacter.money + 10
                         print "Enemy Defeated! You have gained 10 money to be greedy with. Just remember you're still poor!"
                 for enemy in list:
-                    inpt = raw_input ('The %s is about to attack you. What would you like to do:\n1.dodge\n2.block\n'%enemy.name)
+                    inpt = raw_input ('The %s is about to attack you. What would you like to do:\n1.dodge\n2.block\n3.parry\n'%enemy.name)
                     if inpt == "dodge" or inpt == "1":
                         if mainCharacter.dodge() == False:
                            enemy.attack(mainCharacter)
 
                     elif inpt == "block" or inpt == "2":
-                        pass
+                        if mainCharacter.block() == False:
+                            enemy.attack(mainCharacter)
+                    elif inpt == "parry" or inpt == "3":
+                        if mainCharacter.parry() == False:
+                            enemy.attack(mainCharacter)
                     else:
                         print "check your spelling!"
+        if isinstance(mainCharacter, Werewolf):
+            if mainCharacter.werewolfMode == True:
+                mainCharacter.untransform()
+
+
 
 class Enemy:
     health = 1
-    damage = 1
+    damage = 20
     name = "Your name here"
     def attack(self, enemy):
         totaldamage = self.damage
@@ -235,13 +322,13 @@ class Zombie(Enemy):
     damage = 5
     name = "Zombie"
     def __init__(self):
-        print "ahhhhh, brains, yum!"
+        print "I am a Zombie!! I will eat your brains!!!"
 class Barbarian(Enemy):
     health = 200
     damage = 15
     name = "Barbarian"
     def __init__(self):
-        print "Im gonna kill yah!!"
+        print "Tremble before the mighty power of a Barbarian!!!"
     
         
             
@@ -252,7 +339,7 @@ class Character:
     blockChance = 50
     health = 100
     city = None
-    money = 10000000
+    money = 100
     weapon = None
     chestpiece = None
     helmet = None
@@ -332,7 +419,7 @@ class Character:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name
 
-        
+
 class Devil(Character):
     name = "Devil"
     
@@ -346,25 +433,46 @@ class Knight(Character):
         elif mainCharacter.mana >15:
             mainCharacter.mana = mainCharacter.mana - 15
             if random.randint(1,6) >=3:
-                enemy.health = enemy.health - 200
+                enemy.health = enemy.health - 80
                 print "you dealt %d damage and succesfully completeted your special move!" % 200
-            elif random.randint(1,6) <3:
+            else:
                 print "you failed your special move!!!"
-            else: 
-                print "sorry, there was an error. You will get 20 extra mana for this: we are sorry"
-                mainCharacter.mana = mainCharacter.mana + 20
-                
-
-            
-
 class Rogue(Character):
     name = "Altair"
- 
-
+    def specialMove(self, enemy):
+        if mainCharacter.mana <15:
+            print "you don't have enough mana!"
+            return
+        elif mainCharacter.mana >15:
+            mainCharacter.mana = mainCharacter.mana - 15
+            if random.randint(1,6) >=3:
+                enemy.health = enemy.health - 200
+                print "you dealt %d damage and succesfully completeted your special move!" % 200
+            else:
+                print "you failed your special move!!!"
 class Werewolf(Character): 
     name = "Wolverine"
-    
+    tempWeapon = None
+    werewolfMode = False
+    def specialMove(self, enemy):
+        if mainCharacter.mana <15:
+            print "you don't have enough mana!"
+            return
+        elif mainCharacter.mana >15:
+            mainCharacter.mana = mainCharacter.mana - 15
+            print "You have transformed into a scary werewolf! Now your attack power is 100 damage!"
+            self.damage = 100
+            self.tempWeapon = self.weapon
+            self.weapon = None
         
+            werewolfMode = True
+
+    def untransform(self):
+        self.damage = 5
+        self.weapon = self.tempWeapon
+        werewolfMode = False
+        print "You have untransformed back into your sneaky, lying, backstabbing self!!!"
+
 ################GAME STARTS HERE################
 
 mainCharacter = None
@@ -424,9 +532,6 @@ while True:
 
     else:
         print "What's the matter with you, spell it right!!!"
-
-
-
 
 
 #list of things that we want to do:

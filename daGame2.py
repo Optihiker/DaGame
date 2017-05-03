@@ -7,7 +7,7 @@ class City:
         self.name = name
 
 class PotionShop:
-    def __init__(self): 
+    def __init__(self):
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
@@ -21,17 +21,17 @@ class PotionShop:
             if inpt == "2":
                 potion = Manapotion()
             if inpt == "3":
-                potion = Suicidepotion()
+                potion = Suicidepotion() 
             inpt = raw_input ('would you like to know more or just buy?\n1.know more\n2.buy\n')
-            if inpt == "1" or inpt == "know more" or inpt == "know more":
+            if inpt == "1" or inpt == "know more" or inpt == "Know more":
                 pass #add info later.
             if inpt == "2" or inpt == "Buy":
                 if mainCharacter.Inventory.Addtobag(potion):
+                    print "Your new potion has been placed in your inventory. Just dont kill yourself!"
                     mainCharacter.money = mainCharacter.money - 50
-                    print "Your new potion has been placed in the inventory. Make sure you equip it!"
                 else:
-                    print "You don't have enough space!"
-                
+                    print "You don't have enough space! Wackjob"
+                print "Thanks, come again!"
 
       
 # 1. Classes need to be declared in the order in which they appear.
@@ -42,7 +42,8 @@ class WeaponShop:
         item = None
         inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($50)\n3.Chestpiece($30)\n4.Helmet($30)\n")
         if mainCharacter.money <50: 
-            print "What! you don't have enough money! Cheapskate! You have", mainCharacter.money, "money, and that's not enough to buy your weapon!!!"
+            print "What! you don't have enough money! Cheapskate! You only have this much money:"
+            print mainCharacter.money 
         else: 
             if inpt == "1":
                 item = LongSword()
@@ -55,44 +56,41 @@ class WeaponShop:
 
             inpt = raw_input ("would you still like to by this?\n1.yes\n2.no\n")
             if inpt == "1" or inpt == "yes":
+                
                 if mainCharacter.Inventory.Addtobag(item):
-                    print "Your new weapon has been placed in the Inventory. Make sure to equip it!"
+                    print "Your new weapon has been placed in your inventory, make sure to equip it!"
                     mainCharacter.money = mainCharacter.money - item.cost
-                else:
+                else: 
                     print "You don't have enough space!"
+
+
                 print "Thanks, come again!"
             if inpt == "2" or inpt == "no":
                 pass
+ 
+
 
 class Inventory:
-    bag = {1 : None, 2 : None, 3 : None, 4 : None, 5 : None, 6: None, 7 : None, 8 : None, 9 : None, 10 : None}
+    bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
         for slot in self.bag:
             if self.bag[slot] == None:
                 self.bag[slot] = item
                 return True
         return False
-
-        
-        print item.__class__
-        #make sure >0spots
-        self.bag[id(item)] = item
-
+            
     def Openbag(self):
         for key in self.bag:
-            print key 
+            print key
             print self.bag[key].__class__.__name__
         inpt = raw_input("What item would you like to take from your endless bag of junk: ")
         key = int(inpt)
         self.bag[key].equip(key)
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
-
+        
 class Potion:
     def equip(self, key):
-        pass
+        pass 
+
 class Manapotion(Potion):
     def equip(self, key):
         mainCharacter.mana = mainCharacter.mana + 100
@@ -105,94 +103,12 @@ class Healthpotion(Potion):
 
 class Suicidepotion(Potion):
     def equip(self, key):
-<<<<<<< HEAD
-        raw_input ('would you like to die?\n 1. Yes\n 2. No')
-        if inpt == "yes":
-            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-            if inpt == "":
-                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                if inpt == "":
-                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                    if inpt == "":
-                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                        if inpt == "":
-                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                            if inpt == "":
-                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                if inpt == "":
-                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                    if inpt == "":
-                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                        if inpt == "":
-                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                            if inpt == "":
-                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                if inpt == "":
-                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                    if inpt == "":
-                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                        if inpt == "":
-                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                            if inpt == "yes":
-                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                if inpt == "":
-                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                    if inpt == "":
-                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                        if inpt == "":
-                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                            if inpt == "":
-                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                if inpt == "":
-                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                    if inpt == "":
-                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                        if inpt == "":
-                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                            if inpt == "":
-                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                if inpt == "":
-                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                    if inpt == "":
-                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                        if inpt == "":
-                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                            if inpt == "":
-                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                if inpt == "yes":
-                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                    if inpt == "":
-                                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                        if inpt == "":
-                                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                            if inpt == "":
-                                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                if inpt == "":
-                                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                    if inpt == "":
-                                                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                        if inpt == "":
-                                                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                            if inpt == "":
-                                                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                                if inpt == "":
-                                                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                                    if inpt == "":
-                                                                                                                                                        raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                                        if inpt == "":
-                                                                                                                                                            raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                                            if inpt == "":
-                                                                                                                                                                raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-                                                                                                                                                                if inpt == "":
-                                                                                                                                                                    raw_input('you Died!!!Please exit TERMINAL and come back to play again')
-        if inpt == "no":
-            print ""
-=======
         mainCharacter.health = 0
         Inventory.bag[key] = None
         print "You took the easy way out!"
-        
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
+
+
+
 
 class Armor():
     impactpower = 0
@@ -209,6 +125,7 @@ class Chestpiece(Armor):
     impactpower = 2
     cost = 30
     name = "Chestpiece"
+
 
 class Weapon:
     crit = 0
@@ -246,6 +163,8 @@ class Battle:
                 elif enmy == 2:
                     list.append(Zombie())
                 index = index + 1
+                
+
                     
             while len(list) > 0:
                 #Your attack phase
@@ -272,19 +191,14 @@ class Battle:
                         pass
 
                 if inpt == "1":
-            
                     mainCharacter.attack(list[enemyNum - 1])
-
-                elif inpt == "2":
+                elif inpt =="2":
                     mainCharacter.specialMove(list[enemyNum - 1])
-
-
-                elif inpt == "3":
-
+                elif inpt =="3":
                     mainCharacter.Inventory.Openbag()
 
                    
-                #Enemy attack phase   
+                #Enemy attack phase
                 for enemy in list:
                     if enemy.health <= 0:
                         list.remove(enemy)
@@ -336,11 +250,7 @@ class Character:
     blockChance = 50
     health = 100
     city = None
-<<<<<<< HEAD
-    money = 100
-=======
-    money = 100000
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
+    money = 10000000
     weapon = None
     chestpiece = None
     helmet = None
@@ -382,23 +292,18 @@ class Character:
     def getCity():
         print self.city.name 
     def equip(self, equipment):
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
         if isinstance(equipment, Armor):
             
             if isinstance(equipment, Helmet):
-                self.helmet = equipment
-               
-            if isinstance(equipment, Chestpiece): 
+                self.helmet = equipment 
+
+            if isinstance(equipment, Chestpiece):
                 self.chestpiece = equipment
-                
 
         if isinstance(equipment, Weapon):
             self.weapon = equipment
-            
+
 
         print "you equiped the %s" %equipment.__class__
 
@@ -414,16 +319,13 @@ class Character:
             print self.weapon.name
 
         if self.chestpiece == None:
-
-            print "Oh shoot, I don't even have a chestpiece!"
-
+            print "Oh shoot, I dont even have a chestpiece!"
         else:
             print "Ha! Ha! Check out my cool"
             print self.chestpiece.name
 
         if self.helmet == None:
-            print "Oh shoot, I don't even have a helmet!"
-
+            print "Oh shoot, I dont even have a helmet!"
         else:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name
@@ -449,11 +351,20 @@ class Knight(Character):
             else: 
                 print "sorry, there was an error. You will get 20 extra mana for this: we are sorry"
                 mainCharacter.mana = mainCharacter.mana + 20
+                
+
+            
+
 class Rogue(Character):
     name = "Altair"
+ 
+
 class Werewolf(Character): 
     name = "Wolverine"
+    
+        
 ################GAME STARTS HERE################
+
 mainCharacter = None
 startingCity = City("Boston")
 inpt = raw_input('type the number or word of the main character you choose :\n1. knight\n2. werewolf\n3. rogue\n')
@@ -467,7 +378,13 @@ if inpt == "Werewolf"or inpt == "werewolf" or inpt == "2":
 if inpt == "Rogue" or inpt == "rogue" or inpt == "3":
     mainCharacter = Rogue()
     print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Learn from master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+
+
 mainCharacter.setCity(startingCity)
+
+
+
+ 
 while True:
     inpt = raw_input ("Menu\n  1.go to\n  2.show off\n  3.fight\n  4.Inventory\n")    
     if inpt == "go to" or inpt == "1": 
@@ -504,12 +421,11 @@ while True:
             mainCharacter.money = mainCharacter.money + 50
 
     else:
-<<<<<<< HEAD
         print "What's the matter with you, spell it right!!!"
-=======
-        print "What's the matter with you, spell it right!!!"             
 
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
+
+
+
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

@@ -7,7 +7,7 @@ class City:
         self.name = name
 
 class PotionShop:
-    def __init__(self): 
+    def __init__(self):
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
@@ -23,15 +23,15 @@ class PotionShop:
             if inpt == "3":
                 potion = Suicidepotion()
             inpt = raw_input ('would you like to know more or just buy?\n1.know more\n2.buy\n')
-            if inpt == "1" or inpt == "know more" or inpt == "know more":
+            if inpt == "1" or inpt == "know more" or inpt == "Know more":
                 pass #add info later.
             if inpt == "2" or inpt == "Buy":
                 if mainCharacter.Inventory.Addtobag(potion):
+                    print "Your new potion has been placed in your inventory. Just dont kill yourself!"
                     mainCharacter.money = mainCharacter.money - 50
-                    print "Your new potion has been placed in the inventory. Make sure you equip it!"
                 else:
-                    print "You don't have enough space!"
-                
+                    print "You don't have enough space! Wackjob"
+                print "Thanks, come again!"
 
       
 # 1. Classes need to be declared in the order in which they appear.
@@ -63,36 +63,34 @@ class WeaponShop:
                 print "Thanks, come again!"
             if inpt == "2" or inpt == "no":
                 pass
+ 
+
 
 class Inventory:
-    bag = {1 : None, 2 : None, 3 : None, 4 : None, 5 : None, 6: None, 7 : None, 8 : None, 9 : None, 10 : None}
+    bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
         for slot in self.bag:
             if self.bag[slot] == None:
                 self.bag[slot] = item
                 return True
         return False
-
-        
-        print item.__class__
-        #make sure >0spots
-        self.bag[id(item)] = item
-
+            
     def Openbag(self):
         for key in self.bag:
-            print key 
+            print key
             print self.bag[key].__class__.__name__
         inpt = raw_input("What item would you like to take from your endless bag of junk: ")
         key = int(inpt)
-        self.bag[key].equip(key)
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
+        if self.bag[key] != None:
+            self.bag[key].equip(key)
+        else:
+            print "Pick again! There's no item in that spot!"
+        
 
 class Potion:
     def equip(self, key):
-        pass
+        pass 
+
 class Manapotion(Potion):
     def equip(self, key):
         mainCharacter.mana = mainCharacter.mana + 100
@@ -105,7 +103,6 @@ class Healthpotion(Potion):
 
 class Suicidepotion(Potion):
     def equip(self, key):
-<<<<<<< HEAD
         raw_input ('would you like to die?\n 1. Yes\n 2. No')
         if inpt == "yes":
             raw_input('you Died!!!Please exit TERMINAL and come back to play again')
@@ -187,12 +184,6 @@ class Suicidepotion(Potion):
                                                                                                                                                                     raw_input('you Died!!!Please exit TERMINAL and come back to play again')
         if inpt == "no":
             print ""
-=======
-        mainCharacter.health = 0
-        Inventory.bag[key] = None
-        print "You took the easy way out!"
-        
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
 
 class Armor():
     impactpower = 0
@@ -209,6 +200,7 @@ class Chestpiece(Armor):
     impactpower = 2
     cost = 30
     name = "Chestpiece"
+
 
 class Weapon:
     crit = 0
@@ -246,6 +238,8 @@ class Battle:
                 elif enmy == 2:
                     list.append(Zombie())
                 index = index + 1
+                
+
                     
             while len(list) > 0:
                 #Your attack phase
@@ -272,38 +266,42 @@ class Battle:
                         pass
 
                 if inpt == "1":
-            
                     mainCharacter.attack(list[enemyNum - 1])
-
-                elif inpt == "2":
+                elif inpt =="2":
                     mainCharacter.specialMove(list[enemyNum - 1])
-
-
-                elif inpt == "3":
-
+                elif inpt =="3":
                     mainCharacter.Inventory.Openbag()
 
                    
-                #Enemy attack phase   
+                #Enemy attack phase
                 for enemy in list:
                     if enemy.health <= 0:
                         list.remove(enemy)
                         mainCharacter.money = mainCharacter.money + 10
                         print "Enemy Defeated! You have gained 10 money to be greedy with. Just remember you're still poor!"
                 for enemy in list:
-                    inpt = raw_input ('The %s is about to attack you. What would you like to do:\n1.dodge\n2.block\n'%enemy.name)
+                    inpt = raw_input ('The %s is about to attack you. What would you like to do:\n1.dodge\n2.block\n3.parry\n'%enemy.name)
                     if inpt == "dodge" or inpt == "1":
                         if mainCharacter.dodge() == False:
                            enemy.attack(mainCharacter)
 
                     elif inpt == "block" or inpt == "2":
-                        pass
+                        if mainCharacter.block() == False:
+                            enemy.attack(mainCharacter)
+                    elif inpt == "parry" or inpt == "3":
+                        if mainCharacter.parry() == False:
+                            enemy.attack(mainCharacter)
                     else:
                         print "check your spelling!"
+        if isinstance(mainCharacter, Werewolf):
+            if mainCharacter.werewolfMode == True:
+                mainCharacter.untransform()
+
+
 
 class Enemy:
     health = 1
-    damage = 1
+    damage = 20
     name = "Your name here"
     def attack(self, enemy):
         totaldamage = self.damage
@@ -319,13 +317,13 @@ class Zombie(Enemy):
     damage = 5
     name = "Zombie"
     def __init__(self):
-        print "ahhhhh, brains, yum!"
+        print "I am a Zombie!! I will eat your brains!!!"
 class Barbarian(Enemy):
     health = 200
     damage = 15
     name = "Barbarian"
     def __init__(self):
-        print "Im gonna kill yah!!"
+        print "Tremble before the mighty power of a Barbarian!!!"
     
         
             
@@ -336,11 +334,7 @@ class Character:
     blockChance = 50
     health = 100
     city = None
-<<<<<<< HEAD
     money = 100
-=======
-    money = 100000
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
     weapon = None
     chestpiece = None
     helmet = None
@@ -382,23 +376,17 @@ class Character:
     def getCity():
         print self.city.name 
     def equip(self, equipment):
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
         if isinstance(equipment, Armor):
             
             if isinstance(equipment, Helmet):
-                self.helmet = equipment
-               
-            if isinstance(equipment, Chestpiece): 
+                self.helmet = equipment 
+
+            if isinstance(equipment, Chestpiece):
                 self.chestpiece = equipment
-                
 
         if isinstance(equipment, Weapon):
             self.weapon = equipment
-            
+
 
         print "you equiped the %s" %equipment.__class__
 
@@ -414,16 +402,13 @@ class Character:
             print self.weapon.name
 
         if self.chestpiece == None:
-
-            print "Oh shoot, I don't even have a chestpiece!"
-
+            print "Oh shoot, I dont even have a chestpiece!"
         else:
             print "Ha! Ha! Check out my cool"
             print self.chestpiece.name
 
         if self.helmet == None:
-            print "Oh shoot, I don't even have a helmet!"
-
+            print "Oh shoot, I dont even have a helmet!"
         else:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name
@@ -442,17 +427,45 @@ class Knight(Character):
         elif mainCharacter.mana >15:
             mainCharacter.mana = mainCharacter.mana - 15
             if random.randint(1,6) >=3:
-                enemy.health = enemy.health - 200
+                enemy.health = enemy.health - 80
                 print "you dealt %d damage and succesfully completeted your special move!" % 200
-            elif random.randint(1,6) <3:
+            else:
                 print "you failed your special move!!!"
-            else: 
-                print "sorry, there was an error. You will get 20 extra mana for this: we are sorry"
-                mainCharacter.mana = mainCharacter.mana + 20
 class Rogue(Character):
     name = "Altair"
+    def specialMove(self, enemy):
+        if mainCharacter.mana <15:
+            print "you don't have enough mana!"
+            return
+        elif mainCharacter.mana >15:
+            mainCharacter.mana = mainCharacter.mana - 15
+            if random.randint(1,6) >=3:
+                enemy.health = enemy.health - 200
+                print "you dealt %d damage and succesfully completeted your special move!" % 200
+            else:
+                print "you failed your special move!!!"
 class Werewolf(Character): 
     name = "Wolverine"
+    tempWeapon = None
+    werewolfMode = False
+    def specialMove(self, enemy):
+        if mainCharacter.mana <15:
+            print "you don't have enough mana!"
+            return
+        elif mainCharacter.mana >15:
+            mainCharacter.mana = mainCharacter.mana - 15
+            print "You have transformed into a scary werewolf! Now your attack power is 100 damage!"
+            self.damage = 100
+            self.tempWeapon = self.weapon
+            self.weapon = None
+        
+            werewolfMode = True
+
+    def untransform(self):
+        self.damage = 5
+        self.weapon = self.tempWeapon
+        werewolfMode = False
+        print "You have untransformed back into your sneaky, lying, backstabbing self!!!"
 ################GAME STARTS HERE################
 mainCharacter = None
 startingCity = City("Boston")
@@ -504,12 +517,7 @@ while True:
             mainCharacter.money = mainCharacter.money + 50
 
     else:
-<<<<<<< HEAD
         print "What's the matter with you, spell it right!!!"
-=======
-        print "What's the matter with you, spell it right!!!"             
-
->>>>>>> 5d3858f0961f5ada491f0f9096e906e7c8699436
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

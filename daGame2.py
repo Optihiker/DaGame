@@ -21,7 +21,7 @@ class PotionShop:
             if inpt == "2":
                 potion = Manapotion()
             if inpt == "3":
-                potion = Suicidepotion()
+                potion = Suicidepotion() 
             inpt = raw_input ('would you like to know more or just buy?\n1.know more\n2.buy\n')
             if inpt == "1" or inpt == "know more" or inpt == "Know more":
                 pass #add info later.
@@ -42,7 +42,8 @@ class WeaponShop:
         item = None
         inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($50)\n3.Chestpiece($30)\n4.Helmet($30)\n")
         if mainCharacter.money <50: 
-            print "What! you don't have enough money! Cheapskate! You have", mainCharacter.money, "money, and that's not enough to buy your weapon!!!"
+            print "What! you don't have enough money! Cheapskate! You only have this much money:"
+            print mainCharacter.money 
         else: 
             if inpt == "1":
                 item = LongSword()
@@ -55,11 +56,14 @@ class WeaponShop:
 
             inpt = raw_input ("would you still like to by this?\n1.yes\n2.no\n")
             if inpt == "1" or inpt == "yes":
+                
                 if mainCharacter.Inventory.Addtobag(item):
-                    print "Your new weapon has been placed in the Inventory. Make sure to equip it!"
+                    print "Your new weapon has been placed in your inventory, make sure to equip it!"
                     mainCharacter.money = mainCharacter.money - item.cost
-                else:
+                else: 
                     print "You don't have enough space!"
+
+
                 print "Thanks, come again!"
             if inpt == "2" or inpt == "no":
                 pass
@@ -70,9 +74,11 @@ class Inventory:
     bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
         for slot in self.bag:
-            if self.bag[slot] == None:
+            if self.bag[slot] != None:
                 self.bag[slot] = item
                 return True
+            else:
+                print "Wah, wah, wah..."
         return False
             
     def Openbag(self):
@@ -86,7 +92,6 @@ class Inventory:
         else:
             print "Pick again! There's no item in that spot!"
         
-
 class Potion:
     def equip(self, key):
         pass 
@@ -376,6 +381,7 @@ class Character:
     def getCity():
         print self.city.name 
     def equip(self, equipment):
+
         if isinstance(equipment, Armor):
             
             if isinstance(equipment, Helmet):
@@ -413,7 +419,7 @@ class Character:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name
 
-        
+
 class Devil(Character):
     name = "Devil"
     
@@ -466,7 +472,9 @@ class Werewolf(Character):
         self.weapon = self.tempWeapon
         werewolfMode = False
         print "You have untransformed back into your sneaky, lying, backstabbing self!!!"
+
 ################GAME STARTS HERE################
+
 mainCharacter = None
 startingCity = City("Boston")
 inpt = raw_input('type the number or word of the main character you choose :\n1. knight\n2. werewolf\n3. rogue\n')
@@ -480,7 +488,13 @@ if inpt == "Werewolf"or inpt == "werewolf" or inpt == "2":
 if inpt == "Rogue" or inpt == "rogue" or inpt == "3":
     mainCharacter = Rogue()
     print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Learn from master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+
+
 mainCharacter.setCity(startingCity)
+
+
+
+ 
 while True:
     inpt = raw_input ("Menu\n  1.go to\n  2.show off\n  3.fight\n  4.Inventory\n")    
     if inpt == "go to" or inpt == "1": 
@@ -518,6 +532,7 @@ while True:
 
     else:
         print "What's the matter with you, spell it right!!!"
+
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

@@ -95,8 +95,8 @@ class Inventory:
         
 class Potion:
     def equip(self, key):
-        pass
-        
+        pass 
+
 class Manapotion(Potion):
     def equip(self, key):
         mainCharacter.mana = mainCharacter.mana + 100
@@ -230,13 +230,11 @@ class Bow(Weapon):
     name = "Bow"
 
 class Battle:
-
-    def chooseEnemy(self, enemies):
+    def chooseEnemy(self, allEnemies):
         enemyNum = 0
         index = 1         
-        for enemy in enemies:
+        for enemy in allEnemies:
             print index,
-       
             print enemy.__class__.__name__, enemy.health
             index = index + 1
 
@@ -245,9 +243,9 @@ class Battle:
         try:
             enemyNum = int(enemyNum)
         except:
-            print "Incorrect input!"
-            return enemies[0]
-        return enemies[enemyNum - 1]
+            print "Incorrect Input - Defaulting to Enemy No. 1"
+            return allEnemies[0]
+        return allEnemies[enemyNum - 1]
 
     def __init__(self):
         print "FIGHT!"
@@ -263,22 +261,24 @@ class Battle:
                 elif enmy == 2:
                     list.append(Zombie())
                 index = index + 1
-    
+                
 
                     
             while len(list) > 0:
                 #Your attack phase
                 inpt = raw_input ('1. attack\n2. use special move\n3. Open Bag\n')
 
+
+    
                 if inpt == "1":
                     mainCharacter.attack(self.chooseEnemy(list))
                 elif inpt =="2":
                     if isinstance(mainCharacter, Knight):
                         mainCharacter.specialMove(list)
-                    elif isinstance(mainCharacter, Rogue):
-                        mainCharacter.specialMove(list[enemyNum - 1])
                     elif isinstance(mainCharacter, Werewolf):
                         mainCharacter.specialMove()
+                    elif isinstance(mainCharacter, Rogue):
+                        mainCharacter.specialMove(self.chooseEnemy(list))
                 elif inpt =="3":
                     mainCharacter.Inventory.Openbag()
 
@@ -304,9 +304,10 @@ class Battle:
                     else:
                         print "check your spelling!"
         if isinstance(mainCharacter, Werewolf):
-            print "im a werewolF!"
             if mainCharacter.werewolfMode == True:
-                mainCharacter.untransform() 
+                mainCharacter.untransform()
+
+
 
 class Enemy:
     health = 1
@@ -430,16 +431,16 @@ class Devil(Character):
 
 class Knight(Character):
     name = "Piercer"
-    def specialMove(self, enemies):
+    def specialMove(self, allEnemies):
         if mainCharacter.mana <15:
             print "you don't have enough mana!"
             return
         elif mainCharacter.mana >15:
             mainCharacter.mana = mainCharacter.mana - 15
             if random.randint(1,6) >=3:
-                for enemy in enemies:
+                for enemy in allEnemies: 
                     enemy.health = enemy.health - 100
-                    print "you dealt %d damage!" % 100
+                    print "you dealt %d damage" % 100 
             else:
                 print "you failed your special move!!!"
 class Rogue(Character):
@@ -460,7 +461,7 @@ class Werewolf(Character):
     tempWeapon = None
     werewolfMode = False
 
-    def specialMove(self, enemy):
+    def specialMove(self):
         if mainCharacter.mana <15:
             print "you don't have enough mana!"
             return 
@@ -470,6 +471,7 @@ class Werewolf(Character):
             self.damage = 100
             self.tempWeapon = self.weapon
             self.weapon = None
+
             self.werewolfMode = True
 
     def untransform(self):

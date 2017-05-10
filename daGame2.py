@@ -74,7 +74,7 @@ class Inventory:
     bag = {1: None, 2: None,3: None,4: None,5: None,6: None,7: None,8: None,9: None,10: None,}
     def Addtobag(self, item):
         for slot in self.bag:
-            if self.bag[slot] != None:
+            if self.bag[slot] == None:
                 self.bag[slot] = item
                 return True
             else:
@@ -89,6 +89,7 @@ class Inventory:
         key = int(inpt)
         if self.bag[key] != None:
             self.bag[key].equip(key)
+
         else:
             print "Pick again! There's no item in that spot!"
         
@@ -458,17 +459,17 @@ class Werewolf(Character):
     name = "Wolverine"
     tempWeapon = None
     werewolfMode = False
-    def specialMove(self):
+
+    def specialMove(self, enemy):
         if mainCharacter.mana <15:
             print "you don't have enough mana!"
-            return
+            return 
         elif mainCharacter.mana >15:
             mainCharacter.mana = mainCharacter.mana - 15
             print "You have transformed into a scary werewolf! Now your attack power is 100 damage!"
             self.damage = 100
             self.tempWeapon = self.weapon
             self.weapon = None
-        
             self.werewolfMode = True
 
     def untransform(self):

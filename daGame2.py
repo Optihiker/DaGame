@@ -256,7 +256,6 @@ class Battle:
                 if inpt == "1" or inpt == "attack" or inpt == "2":
                     index = 1         
                     print list
-
                     for enemy in list:
                         print index,
                    

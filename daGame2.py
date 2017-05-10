@@ -230,6 +230,7 @@ class Bow(Weapon):
     name = "Bow"
 
 class Battle:
+
     def chooseEnemy(self, enemies):
         enemyNum = 0
         index = 1         
@@ -270,8 +271,7 @@ class Battle:
                 inpt = raw_input ('1. attack\n2. use special move\n3. Open Bag\n')
 
                 if inpt == "1":
-                    mainCharacter.attack(chooseEnemy(list))
-
+                    mainCharacter.attack(self.chooseEnemy(list))
                 elif inpt =="2":
                     if isinstance(mainCharacter, Knight):
                         mainCharacter.specialMove(list)

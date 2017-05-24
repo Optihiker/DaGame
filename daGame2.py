@@ -392,9 +392,11 @@ class Character:
     
 
     def store(self):
-        if mainCharacter.money <=30:
-            print "a costomer has bought something in your store. You get 10 money"
-            mainCharacter.money = mainCharacter.money + 10
+        print "It costs 50 bucks to open a store."
+        mainCharacter.money = mainCharacter.money - 50
+        while mainCharacter.money <=30:
+            print "a customer has bought something in your store. You get 10 money"
+            mainCharacter.money = mainCharacter.money + 50
           
     def masterWizard(self):
         inpt = raw_input ('Hello, little one. I can help you with these things:\n 1. powerful weapon\n 2. go to a nice restaurant\n 3. Open a store to get money. \n Which would you like to do?\n')
@@ -447,7 +449,7 @@ class Character:
                 print "you are dining most exquisitly on \"Masa\" food. Your health is now +55"
                 mainCharacter.health = mainCharacter.health + 55
         elif inpt == "3":
-            print "you have opened a store. Every time a costomer comes in and buys something, you will get money!"
+            print "you have opened a store. Every time a customer comes in and buys something, you will get money!"
             mainCharacter.store()
 
     def Home(self):

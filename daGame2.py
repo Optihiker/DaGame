@@ -11,7 +11,8 @@ class PotionShop:
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
-        if mainCharacter.money <50: 
+        if mainCharacter.money
+         <50: 
             print "What! You don't have enough money! Cheapskate! you only have this much money:"
             print mainCharacter.money
             

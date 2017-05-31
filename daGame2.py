@@ -25,13 +25,12 @@ class Zschorlau(City):
     name = "Zschorlau"
     def __init__(self):
         print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
-        self.weapons = [guildedRapier(), jadedPosionDagger()] #Gold Minigun(), Uranium Scythe()
-class Fidgura(City):
-    weapons = []
-    name = "Fidgura"
-    def __init__(self):    
-        print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include \n1. Meat Mania\n2. Veggie Vult. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
-        weapons = [FlamingBaseball(), AtomicSpinner()]
+        self.weapons = [guildedRapier(), jadedPoisonDagger()] #Gold Minigun(), Uranium Scythe()
+#class Fidgura(City):
+    #weapons = [flamingBaseball(), atomicSpinner(), Steak(), Fish(), Chicken(), Greens()]
+    #name = "Fidgura"
+    #def __init__(self):    
+        #print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include many varities. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
 
 
 class PotionShop:
@@ -73,13 +72,16 @@ class WeaponShop:
         inpt = raw_input("What would you like to buy?")
         inpt = int(inpt)
         item = mainCharacter.city.weapons[inpt - 1] 
-        if mainCharacter.Inventory.Addtobag(item):
-            print "Your new weapon has been placed in your inventory, make sure to equip it!"
-            mainCharacter.money = mainCharacter.money - item.cost
-        else: 
-            print "You don't have enough space!"
+        if mainCharacter.money < item.cost:
+            print "you don't have enough money to buy that weapon!"
+        else:
+            if mainCharacter.Inventory.Addtobag(item):
+                print "Your new weapon has been placed in your inventory, make sure to equip it!"
+                mainCharacter.money = mainCharacter.money - item.cost
+            else: 
+                print "You don't have enough space!"
 
-        print "Thanks, come again!"
+            print "Thanks, come again!"
 
 
 class Inventory:
@@ -155,9 +157,6 @@ class Weapon:
     cost = 0
     name = "Nothing yet"
     damage = 0      
-    def equip(self, key):
-        mainCharacter.equip(self)
-        mainCharacter.damage = self.damage
 
 class titaniumElectricSpear(Weapon):
     damage = 140
@@ -175,17 +174,17 @@ class LongSword(Weapon):
     crit = 10
     name = "Longsword"
 
-class FlamingBaseball(Weapon):
-    damage = 80
-    cost = 120
-    crit = 8
-    name = "Flaming Baseball"
+#class flamingBaseball(Weapon):
+    #damage = 80
+    #cost = 120
+    #crit = 8
+    #name = "Flaming Baseball"
 
-class AtomicSpinner(Weapon):
-    damage = 250
-    cost = 475
-    crit = 10
-    name = "Atomic Spinner"
+#class atomicSpinner(Weapon):
+    #damage = 250
+    #cost = 475
+    #crit = 10
+    #name = "Atomic Spinner"
 
 class Bow(Weapon):
     damage = 75
@@ -211,13 +210,13 @@ class LightSaber(Weapon):
     crit = 15
     name = "Light Saber"
 
-class GuildedRapier(Weapon):
+class guildedRapier(Weapon):
     damage = 100
     cost = 300
     crit = 25
     name = "Guilded Rapier"
 
-class jPDagger(Weapon):
+class jadedPoisonDagger(Weapon):
     damage = 300
     cost = 1000
     crit = 1
@@ -504,16 +503,13 @@ class Character:
                 elif inpt == "2":
                     continue
         if inpt == "2":
-            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n3. Fidgura($50)\n')
+            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n')
             if inpt == "1":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Gabrieapolis()
             if inpt == "2":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Zschorlau()
-            if inpt == "3":
-                print "Ok. Boarding... You have arrived!"
-                self.city = Fidgura()
             self.money = mainCharacter.money - 50
 
         if inpt == "3":

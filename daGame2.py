@@ -10,8 +10,7 @@ class Gabrieapolis(City):
     weapons = []
     name = "Gabrieapolis"
     def __init__(self):
-        weapons = [titaniumElectricSpear(),  LongSword()] #2. Silver poison double sided axe\n
-        shops = ["blacksmithing"]
+        self.weapons = [titaniumElectricSpear(),  LongSword() Silver poison double sided axe()]
         print "welcome to the city of Gabrieapolis, the city of blacksmithing, where weapons are made."
 
     
@@ -22,12 +21,12 @@ class Boston(City):
         print("Welcome to Boston")
         self.weapons = [LongSword(), Bow()]
 
-class Zschorlau(City)
+class Zschorlau(City):
     shops = ["Weapon shop", "Potion shop"]
-    name = Zschorlau
+    name = "Zschorlau"
     Weapons = ["Guilded Rapier", "Posioned Ruby, Diamond and Emerald Encrested Gold Dagger", "Solid Gold Minigun"]
     def __init__(self):
-        print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments.":
+        print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
 
 class Fidgura(City):
     def __init__(self):    
@@ -61,8 +60,6 @@ class PotionShop:
                     print "You don't have enough space! Wackjob"
                 print "Thanks, come again!"
 class WeaponShop:
-    city = mainCharacter.city
-    weapons = mainCharacter.city.weapons
     def __init__(self):
         print mainCharacter.city.name
         print "Welcome to the weapon shop"
@@ -74,7 +71,7 @@ class WeaponShop:
         item = None 
         inpt = raw_input("What would you like to buy?")
         inpt = int(inpt)
-        item = weapons[inpt - 1] 
+        item = mainCharacter.city.weapons[inpt - 1] 
         if mainCharacter.Inventory.Addtobag(item):
             print "Your new weapon has been placed in your inventory, make sure to equip it!"
             mainCharacter.money = mainCharacter.money - item.cost
@@ -480,10 +477,18 @@ class Character:
                 elif inpt == "2":
                     continue
         if inpt == "2":
-            inpt = raw_input('here are the flights available:\n1. Boston to Gabrieapolis($50)\n')
-            print "ok. Boarding... You have arrived!"
+            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n3. Fidgura($50)\n')
+            if inpt == "1":
+                print "Ok. Boarding... You have arrived!"
+                self.city = Gabrieapolis()
+            if inpt == "2":
+                print "Ok. Boarding... You have arrived!"
+                self.city = Zschorlau()
+            if inpt == "3":
+                print "Ok. Boarding... You have arrived!"
+                self.city = Fidgura()
             self.money = mainCharacter.money - 50
-            self.city = Gabrieapolis()
+
         if inpt == "3":
             print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 1 damage"
             mainCharacter.damage = mainCharacter.damage + 1

@@ -14,18 +14,27 @@ class Gabrieapolis(City):
         weapons = [titaniumElectricSpear(),  LongSword()] #2. Silver poison double sided axe\n
         shops = ["blacksmithing"]
         print "welcome to the city of Gabrieapolis, the city of blacksmithing, where weapons are made."
-
     
-class Boston(City):
-    weapons = ["nada"]    
+class Boston(City):  
+    weapons = []
     name = "Boston"
     def __init__(self):
         print("Welcome to Boston")
         self.weapons = [LongSword(), Bow()]
 
+class Zschorlau(City):
+    weapons = []
+    name = "Zschorlau"
+    def __init__(self):
+        print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
+
 class Fidgura(City):
+    weapons = []
+    name = "Fidgura"
     def __init__(self):    
         print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include \n1. Meat Mania\n2. Veggie Vult. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
+        weapons = [FlamingBaseball(), AtomicSpinner()]
+
 class PotionShop:
     def __init__(self):
         potion = None
@@ -64,7 +73,7 @@ class WeaponShop:
         item = None 
         inpt = raw_input("What would you like to buy?")
         inpt = int(inpt)
-        item = weapons[inpt - 1] 
+        item = mainCharacter.city.weapons[inpt - 1] 
         if mainCharacter.Inventory.Addtobag(item):
             print "Your new weapon has been placed in your inventory, make sure to equip it!"
             mainCharacter.money = mainCharacter.money - item.cost
@@ -150,23 +159,38 @@ class Weapon:
     def equip(self, key):
         mainCharacter.equip(self)
         mainCharacter.damage = self.damage
+
+
 class titaniumElectricSpear(Weapon):
     damage = 190
     cost = 450
     crit = 5
     name = "Titanium Electric Spear"
+
 class LongSword(Weapon):
     damage = 50
     cost = 50
     crit = 10
     name = "Longsword"
 
+class FlamingBaseball(Weapon):
+    damage = 80
+    cost = 120
+    crit = 8
+    name = "Flaming Baseball"
+
+class AtomicSpinner(Weapon):
+    damage = 250
+    cost = 475
+    crit = 10
+    name = "Atomic Spinner"
 
 class Bow(Weapon):
     damage = 75
     cost = 60
     crit = 1
     name = "Bow"
+
 class LightningBolt(Weapon):
     damage = 250
     cost = 500
@@ -315,7 +339,7 @@ class Barbarian(Enemy):
 class Character:
     dodgeChance = 50
     blockChance = 50
-    health = 100
+    health = 1
     city = None
     money = 100
     weapon = None
@@ -397,7 +421,6 @@ class Character:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name
     
-
     def store(self):
         print "It costs 50 bucks to open a store."
         mainCharacter.money = mainCharacter.money - 50
@@ -517,7 +540,7 @@ class Rogue(Character):
         self.damage = 5
         self.weapon = self.tempWeapon
         self.rogueMode = False
-        print "You have untransformed back into your sneaky, lying, backstabbing self!!!"
+        print "You have untransformed back into your sneaky, lying, backstabbing self by putting your awsome hood on!!!"
 
 class Werewolf(Character): 
     name = "Wolverine"
@@ -626,7 +649,7 @@ while True:
     if mainCharacter.health <=0:
         while True:
             x = raw_input ('YOU DIED! EXIT TERMINAL AND COME BACK TO PLAY AGAIN!')
-            
+            break
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

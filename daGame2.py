@@ -6,13 +6,19 @@ class City:
     def __init__(self, name):    
         self.name = name
 
+class Zschorlau(City)
+    shops = ["Weapon shop", "Potion shop"]
+    name = Zschorlau
+    Weapons = ["Guilded Rapier", "Posioned Ruby, Diamond and Emerald Encrested Gold Dagger", "Solid Gold Minigun"]
+    def __init__(self):
+        print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments.":
+
 class PotionShop:
     def __init__(self):
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
-        if mainCharacter.money
-         <50: 
+        if mainCharacter.money<50: 
             print "What! You don't have enough money! Cheapskate! you only have this much money:"
             print mainCharacter.money
             
@@ -39,13 +45,18 @@ class PotionShop:
 # ex, if we want to make a LongSword in the WeaponShop class,
 # we have to put the LongSword class ABOVE the WeaponShop class
 class WeaponShop:
+    city = mainCharacter.city
+    weapons = mainCharacter.city.weapons
     def __init__(self):
+
         item = None
         inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($60)\n3.Chestpiece($30)\n4.Helmet($30)\n")
         if mainCharacter.money <50: 
             print "What! you don't have enough money! Cheapskate! You only have this much money:"
             print mainCharacter.money 
-        else: 
+        else:
+            for weapon in weapons:
+                
             if inpt == "1":
                 item = LongSword()
             if inpt == "2":
@@ -309,7 +320,7 @@ class Barbarian(Enemy):
 class Character:
     dodgeChance = 50
     blockChance = 50
-    health = 100
+    health = 1
     city = None
     money = 100
     weapon = None
@@ -391,12 +402,11 @@ class Character:
             print "Ha! Ha! Check out my cool"
             print self.helmet.name
     
-
     def store(self):
         if mainCharacter.money <=30:
-            print "a costomer has bought something in your store. You get 10 money"
+            print "a customer has bought something in your store. You get 10 money"
             mainCharacter.money = mainCharacter.money + 10
-          
+      
     def masterWizard(self):
         inpt = raw_input ('Hello, little one. I can help you with these things:\n 1. powerful weapon\n 2. go to a nice restaurant\n 3. Open a store to get money. \n Which would you like to do?\n')
         if inpt == "none" or inpt == "None":
@@ -448,7 +458,7 @@ class Character:
                 print "you are dining most exquisitly on \"Masa\" food. Your health is now +55"
                 mainCharacter.health = mainCharacter.health + 55
         elif inpt == "3":
-            print "you have opened a store. Every time a costomer comes in and buys something, you will get money!"
+            print "you have opened a store. Every time a customer comes in and buys something, you will get money!"
             mainCharacter.store()
 
     def Home(self):
@@ -508,7 +518,7 @@ class Rogue(Character):
         self.damage = 5
         self.weapon = self.tempWeapon
         self.rogueMode = False
-        print "You have untransformed back into your sneaky, lying, backstabbing self!!!"
+        print "You have untransformed back into your sneaky, lying, backstabbing self by putting your awsome hood on!!!"
 
 class Werewolf(Character): 
     name = "Wolverine"
@@ -618,7 +628,7 @@ while True:
     if mainCharacter.health <=0:
         while True:
             x = raw_input ('YOU DIED! EXIT TERMINAL AND COME BACK TO PLAY AGAIN!')
-            
+            break
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

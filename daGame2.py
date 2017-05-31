@@ -13,10 +13,9 @@ class Gabrieapolis(City):
     def __init__(self):
         self.weapons = [titaniumElectricSpear(),  LongSword(), Silverpoisondoublesidedaxe()]
         print "welcome to the city of Gabrieapolis, the city of blacksmithing, where weapons are made."
-
     
-class Boston(City):
-    weapons = ["nada"]    
+class Boston(City):  
+    weapons = []
     name = "Boston"
     def __init__(self):
         print("Welcome to Boston")
@@ -28,8 +27,12 @@ class Zschorlau(City):
         print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
         self.weapons = [guildedRapier(), jadedPosionDagger()] #Gold Minigun(), Uranium Scythe()
 class Fidgura(City):
+    weapons = []
+    name = "Fidgura"
     def __init__(self):    
         print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include \n1. Meat Mania\n2. Veggie Vult. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
+        weapons = [FlamingBaseball(), AtomicSpinner()]
+
 
 class PotionShop:
     def __init__(self):
@@ -171,6 +174,18 @@ class LongSword(Weapon):
     cost = 50
     crit = 10
     name = "Longsword"
+
+class FlamingBaseball(Weapon):
+    damage = 80
+    cost = 120
+    crit = 8
+    name = "Flaming Baseball"
+
+class AtomicSpinner(Weapon):
+    damage = 250
+    cost = 475
+    crit = 10
+    name = "Atomic Spinner"
 
 class Bow(Weapon):
     damage = 75

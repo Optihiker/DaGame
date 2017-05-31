@@ -6,11 +6,12 @@ class City:
     #description = None
     def __init__(self, name):    
         self.name = name
+
 class Gabrieapolis(City):
     weapons = []
     name = "Gabrieapolis"
     def __init__(self):
-        self.weapons = [titaniumElectricSpear(),  LongSword() Silver poison double sided axe()]
+        self.weapons = [titaniumElectricSpear(),  LongSword(), Silverpoisondoublesidedaxe()]
         print "welcome to the city of Gabrieapolis, the city of blacksmithing, where weapons are made."
 
     
@@ -22,16 +23,13 @@ class Boston(City):
         self.weapons = [LongSword(), Bow()]
 
 class Zschorlau(City):
-    shops = ["Weapon shop", "Potion shop"]
     name = "Zschorlau"
-    Weapons = ["Guilded Rapier", "Posioned Ruby, Diamond and Emerald Encrested Gold Dagger", "Solid Gold Minigun"]
     def __init__(self):
         print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
-
+        self.weapons = [guildedRapier(), jadedPosionDagger()] #Gold Minigun(), Uranium Scythe()
 class Fidgura(City):
     def __init__(self):    
         print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include \n1. Meat Mania\n2. Veggie Vult. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
-
 
 class PotionShop:
     def __init__(self):
@@ -157,23 +155,29 @@ class Weapon:
     def equip(self, key):
         mainCharacter.equip(self)
         mainCharacter.damage = self.damage
+
 class titaniumElectricSpear(Weapon):
-    damage = 190
+    damage = 140
     cost = 450
     crit = 5
     name = "Titanium Electric Spear"
+class Silverpoisondoublesidedaxe(Weapon):
+    damage = 135
+    cost = 430
+    crit = 5
+    name = "Silver Poison Double Sided Axe"
 class LongSword(Weapon):
     damage = 50
     cost = 50
     crit = 10
     name = "Longsword"
 
-
 class Bow(Weapon):
     damage = 75
     cost = 60
     crit = 1
     name = "Bow"
+
 class LightningBolt(Weapon):
     damage = 250
     cost = 500
@@ -191,6 +195,19 @@ class LightSaber(Weapon):
     cost = 450
     crit = 15
     name = "Light Saber"
+
+class GuildedRapier(Weapon):
+    damage = 100
+    cost = 300
+    crit = 25
+    name = "Guilded Rapier"
+
+class jPDagger(Weapon):
+    damage = 300
+    cost = 1000
+    crit = 1
+    name = "Jaded Posion Dagger"
+
 class Battle:
     def chooseEnemy(self, allEnemies):
         enemyNum = 0
@@ -287,8 +304,6 @@ class Battle:
                 mainCharacter.untransform()
 
 
-
-
 class Enemy:
     health = 1
     damage = 20
@@ -316,9 +331,6 @@ class Barbarian(Enemy):
         print "Tremble before the mighty power of a Barbarian!!!"
     
         
-            
-    
-
 class Character:
     dodgeChance = 50
     blockChance = 50

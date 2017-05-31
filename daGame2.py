@@ -26,7 +26,7 @@ class Zschorlau(City):
     name = "Zschorlau"
     def __init__(self):
         print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
-        self.weapons = [Guilded Rapier(), Jaded Posion Dagger()] #Gold Minigun(), Uranium Scythe()
+        self.weapons = [guildedRapier(), jPDagger()] #goldMinigun(), uraniumScythe()
 
 class Fidgura(City):
     def __init__(self):    
@@ -195,13 +195,13 @@ class LightSaber(Weapon):
     crit = 15
     name = "Light Saber"
 
-class GuildedRapier(Weapon):
+class guildedRapier(Weapon):
     damage = 100
     cost = 300
     crit = 25
     name = "Guilded Rapier"
 
-class jPDagger(weapon):
+class jPDagger(Weapon):
     damage = 300
     cost = 1000
     crit = 1

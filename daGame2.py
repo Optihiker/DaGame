@@ -129,7 +129,7 @@ class Healthpotion(Potion):
 
 class Suicidepotion(Potion):
     def equip(self, key):
-        inpt = raw_input ('would you like to die?\n 1. Yes\n 2. No')
+        inpt = raw_input ('would you like to die?\n 1. Yes\n 2. No\n')
         if inpt == "yes" or inpt == "1":
             while True:
                 inpt = raw_input ('you Died!!!Please exit TERMINAL and come back to play again')
@@ -157,7 +157,8 @@ class Weapon:
     cost = 0
     name = "Nothing yet"
     damage = 0      
-
+    def equip(self, key):
+        mainCharacter.equip(self)
 class titaniumElectricSpear(Weapon):
     damage = 140
     cost = 450

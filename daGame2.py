@@ -2,17 +2,23 @@ import random
 class City: 
     shops = ["Weapon shop", "Potion shop"]
     name = None
+    weapons = []
     #description = None
     def __init__(self, name):    
         self.name = name
+class Gabrieapolis(City):
+    weapons = []
+    def __init__(self):
+        weapons = [titaniumElectricSpear(),  LongSword()] #2. Silver poison double sided axe\n
+        shops = ["blacksmithing"]
+        print "welcome to the city of Gabrieapolis, the city of blacksmithing, where weapons are made."
 
 class PotionShop:
     def __init__(self):
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
-        if mainCharacter.money
-         <50: 
+        if mainCharacter.money<50: 
             print "What! You don't have enough money! Cheapskate! you only have this much money:"
             print mainCharacter.money
             
@@ -22,7 +28,7 @@ class PotionShop:
             if inpt == "2":
                 potion = Manapotion()
             if inpt == "3":
-                potion = Suicidepotion() 
+                potion = Suicidepotion()
             inpt = raw_input ('would you like to know more or just buy?\n1.know more\n2.buy\n')
             if inpt == "1" or inpt == "know more" or inpt == "Know more":
                 pass #add info later.
@@ -33,19 +39,19 @@ class PotionShop:
                 else:
                     print "You don't have enough space! Wackjob"
                 print "Thanks, come again!"
-
-      
-# 1. Classes need to be declared in the order in which they appear.
-# ex, if we want to make a LongSword in the WeaponShop class,
-# we have to put the LongSword class ABOVE the WeaponShop class
 class WeaponShop:
     def __init__(self):
+        city = mainCharacter.city
+        weapons = mainCharacter.city.weapons
         item = None
+        print "What would you like to buy"
+        for weapon in weapons:
+            print weapon.name
         inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($60)\n3.Chestpiece($30)\n4.Helmet($30)\n")
         if mainCharacter.money <50: 
             print "What! you don't have enough money! Cheapskate! You only have this much money:"
             print mainCharacter.money 
-        else: 
+        else:
             if inpt == "1":
                 item = LongSword()
             if inpt == "2":
@@ -139,7 +145,6 @@ class Chestpiece(Armor):
     cost = 30
     name = "Chestpiece"
 
-
 class Weapon:
     crit = 0
     cost = 0
@@ -148,7 +153,11 @@ class Weapon:
     def equip(self, key):
         mainCharacter.equip(self)
         mainCharacter.damage = self.damage
-
+class titaniumElectricSpear(Weapon):
+    damage = 190
+    cost = 450
+    crit = 5
+    name = "Titanium Electric Spear"
 class LongSword(Weapon):
     damage = 50
     cost = 50
@@ -465,12 +474,13 @@ class Character:
                 elif inpt == "2":
                     continue
         if inpt == "2":
-            inpt = raw_input('here are the flights available:\n1. Boston to NYC($50)\n2. Boston to San Francisco($50)\n3. Boston to Chicago($50)\n4. Boston to London($50)\n Which would you like?\n')
+            inpt = raw_input('here are the flights available:\n1. Boston to Gabrieapolis($50)\n')
             print "ok. Boarding... You have arrived!"
-            mainCharacter.money = mainCharacter.money - 50
+            self.money = mainCharacter.money - 50
+            self.city = Gabrieapolis()
         if inpt == "3":
             print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 1 damage"
-            mainCharacter.damage = mainCharacter.weapon.damage + 1
+            mainCharacter.damage = mainCharacter.damage + 1
 
 class Devil(Character):
     name = "Devil"

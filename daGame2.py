@@ -1,18 +1,25 @@
 import random
 class City: 
-    shops = ["Weapon shop", "Potion shop"]
-    name = None
+    shops = ["NOWHERE!"]
+    name = "None"
+    weapons = ["NADA!"]
     #description = None
-    def __init__(self, name):    
-        self.name = name
+class Boston(City):
+    weapons = ["nada"]    
+    name = "Boston"
+    def __init__(self):
+        print("Welcome to Boston")
+        self.weapons = [LongSword(), Bow()]
 
+class Fidgura(City):
+    def __init__(self):    
+        print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include \n1. Meat Mania\n2. Veggie Vult. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
 class PotionShop:
     def __init__(self):
         potion = None
         inpt = raw_input ("Welcome to the potion shop, what do you want to buy?\n1. Health Potion ($50)\n2. Mana Potion($50)\n3. Suicide potion($50)\n")
 
-        if mainCharacter.money
-         <50: 
+        if mainCharacter.money<50: 
             print "What! You don't have enough money! Cheapskate! you only have this much money:"
             print mainCharacter.money
             
@@ -40,35 +47,25 @@ class PotionShop:
 # we have to put the LongSword class ABOVE the WeaponShop class
 class WeaponShop:
     def __init__(self):
-        item = None
-        inpt = raw_input("Welcome to the weapon shop. What would you like to buy?\n1.Longsword($50)\n2.Bow and arrows($60)\n3.Chestpiece($30)\n4.Helmet($30)\n")
-        if mainCharacter.money <50: 
-            print "What! you don't have enough money! Cheapskate! You only have this much money:"
-            print mainCharacter.money 
+        print mainCharacter.city.name
+        print "Welcome to the weapon shop"
+        index = 1
+        for weapon in mainCharacter.city.weapons:
+            print index, 
+            print weapon.name
+            index = index + 1
+        item = None 
+        inpt = raw_input("What would you like to buy?")
+        inpt = int(inpt)
+        item = weapons[inpt - 1] 
+        if mainCharacter.Inventory.Addtobag(item):
+            print "Your new weapon has been placed in your inventory, make sure to equip it!"
+            mainCharacter.money = mainCharacter.money - item.cost
         else: 
-            if inpt == "1":
-                item = LongSword()
-            if inpt == "2":
-                item = Bow()
-            if inpt == "3":
-                item = Chestpiece()
-            if inpt == "4":
-                item = Helmet()
-
-            inpt = raw_input ("would you still like to by this?\n1.yes\n2.no\n")
-            if inpt == "1" or inpt == "yes":
-                
-                if mainCharacter.Inventory.Addtobag(item):
-                    print "Your new weapon has been placed in your inventory, make sure to equip it!"
-                    mainCharacter.money = mainCharacter.money - item.cost
-                else: 
-                    print "You don't have enough space!"
+            print "You don't have enough space!"
 
 
-                print "Thanks, come again!"
-            if inpt == "2" or inpt == "no":
-                pass
- 
+        print "Thanks, come again!"
 
 
 class Inventory:
@@ -153,7 +150,7 @@ class LongSword(Weapon):
     damage = 50
     cost = 50
     crit = 10
-    name = "Long Sword"
+    name = "Longsword"
 
 
 class Bow(Weapon):
@@ -539,13 +536,12 @@ class Werewolf(Character):
 ################GAME STARTS HERE################
 
 mainCharacter = None
-startingCity = City("Boston")
 inpt = raw_input('type the number or word of the main character you choose :\n1. knight\n2. werewolf\n3. rogue\n')
 
 if inpt == "knight" or inpt == "1" or inpt == "Knight":
     mainCharacter = Knight()
     print "you have choosen the path of the knight, the bravest of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
-if inpt == "Werewolf"or inpt == "werewolf" or inpt == "2":
+if inpt == "Werewolf" or inpt == "werewolf" or inpt == "2":
     print "you have chosen the path of the werewolf, the strongest and most vicious of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
     mainCharacter = Werewolf()
 if inpt == "Rogue" or inpt == "rogue" or inpt == "3":
@@ -553,7 +549,7 @@ if inpt == "Rogue" or inpt == "rogue" or inpt == "3":
     print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
 
 
-mainCharacter.setCity(startingCity)
+mainCharacter.setCity(Boston())
 
 
 

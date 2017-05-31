@@ -4,6 +4,17 @@ class City:
     name = "None"
     weapons = ["NADA!"]
     #description = None
+    def __init__(self, name):    
+        self.name = name
+class Gabrieapolis(City):
+    weapons = []
+    name = "Gabrieapolis"
+    def __init__(self):
+        weapons = [titaniumElectricSpear(),  LongSword()] #2. Silver poison double sided axe\n
+        shops = ["blacksmithing"]
+        print "welcome to the city of Gabrieapolis, the city of blacksmithing, where weapons are made."
+
+    
 class Boston(City):
     weapons = ["nada"]    
     name = "Boston"
@@ -38,7 +49,7 @@ class PotionShop:
             if inpt == "2":
                 potion = Manapotion()
             if inpt == "3":
-                potion = Suicidepotion() 
+                potion = Suicidepotion()
             inpt = raw_input ('would you like to know more or just buy?\n1.know more\n2.buy\n')
             if inpt == "1" or inpt == "know more" or inpt == "Know more":
                 pass #add info later.
@@ -49,11 +60,6 @@ class PotionShop:
                 else:
                     print "You don't have enough space! Wackjob"
                 print "Thanks, come again!"
-
-      
-# 1. Classes need to be declared in the order in which they appear.
-# ex, if we want to make a LongSword in the WeaponShop class,
-# we have to put the LongSword class ABOVE the WeaponShop class
 class WeaponShop:
     city = mainCharacter.city
     weapons = mainCharacter.city.weapons
@@ -74,7 +80,7 @@ class WeaponShop:
             mainCharacter.money = mainCharacter.money - item.cost
         else: 
             print "You don't have enough space!"
-        
+
         print "Thanks, come again!"
 
 
@@ -146,7 +152,6 @@ class Chestpiece(Armor):
     cost = 30
     name = "Chestpiece"
 
-
 class Weapon:
     crit = 0
     cost = 0
@@ -155,7 +160,11 @@ class Weapon:
     def equip(self, key):
         mainCharacter.equip(self)
         mainCharacter.damage = self.damage
-
+class titaniumElectricSpear(Weapon):
+    damage = 190
+    cost = 450
+    crit = 5
+    name = "Titanium Electric Spear"
 class LongSword(Weapon):
     damage = 50
     cost = 50
@@ -399,10 +408,12 @@ class Character:
             print self.helmet.name
     
     def store(self):
-        if mainCharacter.money <=30:
+        print "It costs 50 bucks to open a store."
+        mainCharacter.money = mainCharacter.money - 50
+        while mainCharacter.money <=30:
             print "a customer has bought something in your store. You get 10 money"
-            mainCharacter.money = mainCharacter.money + 10
-      
+            mainCharacter.money = mainCharacter.money + 50
+          
     def masterWizard(self):
         inpt = raw_input ('Hello, little one. I can help you with these things:\n 1. powerful weapon\n 2. go to a nice restaurant\n 3. Open a store to get money. \n Which would you like to do?\n')
         if inpt == "none" or inpt == "None":
@@ -469,12 +480,13 @@ class Character:
                 elif inpt == "2":
                     continue
         if inpt == "2":
-            inpt = raw_input('here are the flights available:\n1. Boston to NYC($50)\n2. Boston to San Francisco($50)\n3. Boston to Chicago($50)\n4. Boston to London($50)\n Which would you like?\n')
+            inpt = raw_input('here are the flights available:\n1. Boston to Gabrieapolis($50)\n')
             print "ok. Boarding... You have arrived!"
-            mainCharacter.money = mainCharacter.money - 50
+            self.money = mainCharacter.money - 50
+            self.city = Gabrieapolis()
         if inpt == "3":
             print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 1 damage"
-            mainCharacter.damage = mainCharacter.weapon.damage + 1
+            mainCharacter.damage = mainCharacter.damage + 1
 
 class Devil(Character):
     name = "Devil"

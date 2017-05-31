@@ -6,6 +6,7 @@ class City:
     #description = None
     def __init__(self, name):    
         self.name = name
+        
 class Gabrieapolis(City):
     weapons = []
     name = "Gabrieapolis"

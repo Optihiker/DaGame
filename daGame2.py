@@ -245,7 +245,7 @@ class Battle:
         inpt = raw_input ('what would you like to do:\n1.fight\n2.run\n')
         if inpt == "fight" or inpt == "1":
             list = []
-            numen = random.randint(1, 5)
+            numen = random.randint(6, 6)
             index = 0
             while index < numen:
                 enmy = random.randint(1, 2)
@@ -259,6 +259,8 @@ class Battle:
                     list.append(Barbarian())
                 elif enmy == 5:
                     list.append(Zombie())
+                elif enmy == 6:
+                    list.append(Dragon())
 
                 index = index + 1
 
@@ -324,7 +326,7 @@ class Enemy:
         print "Your foe dealt %d damage" % totaldamage
       
 class Zombie(Enemy):
-    health = 150
+    health = 100
     damage = 15
     name = "Zombie"
     def __init__(self):
@@ -335,12 +337,17 @@ class Barbarian(Enemy):
     name = "Barbarian"
     def __init__(self):
         print "Tremble before the mighty power of a Barbarian!!!"
-    
+class Dragon(Enemy):
+    health = 500
+    damage = 40
+    name = "Dragon"
+    def __init__(self):
+        print "I will claw you to shreds, and roast you with fire. I am a dragon!"
         
 class Character:
     dodgeChance = 50
     blockChance = 50
-    health = 100
+    health = 150
     city = Boston()
     money = 200
     weapon = None
@@ -588,13 +595,13 @@ inpt = raw_input('type the number or word of the main character you choose :\n1.
 
 if inpt == "knight" or inpt == "1" or inpt == "Knight":
     mainCharacter = Knight()
-    print "you have choosen the path of the knight, the bravest of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+    print "you have choosen the path of the knight, the bravest of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\". You start off with 200 money and 150 health. Good Luck!"
 if inpt == "Werewolf" or inpt == "werewolf" or inpt == "2":
-    print "you have chosen the path of the werewolf, the strongest and most vicious of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+    print "you have chosen the path of the werewolf, the strongest and most vicious of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\". You start off with 200 money and 150 health. Good Luck!"
     mainCharacter = Werewolf()
 if inpt == "Rogue" or inpt == "rogue" or inpt == "3":
     mainCharacter = Rogue()
-    print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+    print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\". You start off with 200 money and 150 health. Good Luck!"
 
 
 mainCharacter.setCity(Boston())
@@ -646,7 +653,7 @@ while True:
         elif inpt == "3":
             inpt = raw_input ('are you sure you want to die: all your scores will be lost?\n')
             if inpt == "yes":
-                for x in inpt:
+                while True:
                     x = raw_input ('YOU DIED! EXIT TERMINAL AND COME BACK TO PLAY AGAIN!')
 
             elif inpt == "no":

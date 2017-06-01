@@ -19,19 +19,19 @@ class Boston(City):
     name = "Boston"
     def __init__(self):
         print("Welcome to Boston")
-        self.weapons = [LongSword(), Bow()]
+        self.weapons = [LongSword(), Bow(), Chestpiece(), Helmet()]
 
 class Zschorlau(City):
     name = "Zschorlau"
     def __init__(self):
         print "Welcome to the city of mining and craftsmanship. Here you can find the finest metals, coals and gemstones. \nIn addition to this you will find finely crafted wooden sculptures, \nWeihnachtspyramide and instruments."
-        self.weapons = [guildedRapier(), jadedPoisonDagger()] #Gold Minigun(), Uranium Scythe()
-#class Fidgura(City):
-    #weapons = [flamingBaseball(), atomicSpinner(), Steak(), Fish(), Chicken(), Greens()]
-    #name = "Fidgura"
-    #def __init__(self):    
-        #print("Welcome to Fidgura; the city filled with exquisite food. Our main specialty shops include many varities. Pick one of these stores to navigate to and you shall be foaming at the mouth for these quantities!")
-
+        self.weapons = [guildedRapier(), jadedPoisonDagger(), goldMinigun(), uraniumScythe()]
+class Fidgura(City):
+    weapons = []
+    name = "Fidgura"
+    def __init__(self):    
+        print("Welcome to Fidgura; the city filled with unusual weapons. Pick one and fight the monsters. To buy food, go visit the master wizard.")
+        self.weapons = [flamingBaseball(), atomicSpinner()]
 
 class PotionShop:
     def __init__(self):
@@ -69,7 +69,7 @@ class WeaponShop:
             print weapon.name
             index = index + 1
         item = None 
-        inpt = raw_input("What would you like to buy?")
+        inpt = raw_input("What would you like to buy?\n")
         inpt = int(inpt)
         item = mainCharacter.city.weapons[inpt - 1] 
         if mainCharacter.money < item.cost:
@@ -161,12 +161,12 @@ class Weapon:
         mainCharacter.equip(self)
 class titaniumElectricSpear(Weapon):
     damage = 140
-    cost = 450
+    cost = 205
     crit = 5
     name = "Titanium Electric Spear"
 class Silverpoisondoublesidedaxe(Weapon):
     damage = 135
-    cost = 430
+    cost = 200
     crit = 5
     name = "Silver Poison Double Sided Axe"
 class LongSword(Weapon):
@@ -175,17 +175,17 @@ class LongSword(Weapon):
     crit = 10
     name = "Longsword"
 
-#class flamingBaseball(Weapon):
-    #damage = 80
-    #cost = 120
-    #crit = 8
-    #name = "Flaming Baseball"
+class flamingBaseball(Weapon):
+    damage = 80
+    cost = 120
+    crit = 8
+    name = "Flaming Baseball"
 
-#class atomicSpinner(Weapon):
-    #damage = 250
-    #cost = 475
-    #crit = 10
-    #name = "Atomic Spinner"
+class atomicSpinner(Weapon):
+    damage = 250
+    cost = 500
+    crit = 10
+    name = "Atomic Spinner"
 
 class Bow(Weapon):
     damage = 75
@@ -195,34 +195,33 @@ class Bow(Weapon):
 
 class LightningBolt(Weapon):
     damage = 250
-    cost = 500
+    cost = 450
     crit = 20
     name = "Lightning Bolt"
 
 class MachineGun(Weapon):
     damage = 150
-    cost = 400
+    cost = 200
     crit = 1/2
     name = "Machine Gun"
 
 class LightSaber(Weapon):
     damage = 190
-    cost = 450
+    cost = 265
     crit = 15
     name = "Light Saber"
 
 class guildedRapier(Weapon):
-    damage = 100
-    cost = 300
+    damage = 150
+    cost = 200
     crit = 25
     name = "Guilded Rapier"
 
 class jadedPoisonDagger(Weapon):
-    damage = 300
-    cost = 1000
+    damage = 200
+    cost = 275
     crit = 1
     name = "Jaded Posion Dagger"
-
 class Battle:
     def chooseEnemy(self, allEnemies):
         enemyNum = 0
@@ -333,14 +332,14 @@ class Enemy:
         print "Your foe dealt %d damage" % totaldamage
       
 class Zombie(Enemy):
-    health = 100
-    damage = 5
+    health = 150
+    damage = 15
     name = "Zombie"
     def __init__(self):
         print "I am a Zombie!! I will eat your brains!!!"
 class Barbarian(Enemy):
-    health = 200
-    damage = 15
+    health = 300
+    damage = 20
     name = "Barbarian"
     def __init__(self):
         print "Tremble before the mighty power of a Barbarian!!!"
@@ -349,8 +348,8 @@ class Barbarian(Enemy):
 class Character:
     dodgeChance = 50
     blockChance = 50
-    health = 1
-    city = None
+    health = 100
+    city = Boston()
     money = 100
     weapon = None
     chestpiece = None
@@ -443,7 +442,7 @@ class Character:
         if inpt == "none" or inpt == "None":
             pass
         elif inpt == "1" or inpt == "powerful weapon":
-            inpt = raw_input('Ok. I have some powerfull weapons in store. But they are all very expensive. Here is what I got:\n1. lightning bolt ($500)\n2. Machine Gun($400)\n3. Lightsaber ($450)\n which would you like to buy?\n')
+            inpt = raw_input('Ok. I have some powerfull weapons in store. But they are all very expensive. Here is what I got:\n1. lightning bolt ($450)\n2. Machine Gun($200)\n3. Lightsaber ($265)\n which would you like to buy?\n')
             if inpt == "1":
                 if mainCharacter.money <500:
                     print "you don't have enough money! Cheapskate!"
@@ -475,19 +474,23 @@ class Character:
                 else: 
                     print "You don't have enough space!"
         elif inpt == "2":
-            inpt = raw_input('Which restaurant would you like to go to:\n 1. Masa, New York City ($200)\n 2. SubliMotion, Spain ($500)\n 3. Restaurant Crissier, Switzerland ($350)\n')
+            inpt = raw_input('Which restaurant would you like to go to:\n 1. Masa, New York City ($75)\n 2. SubliMotion, Spain ($100)\n 3. Restaurant Crissier, Switzerland ($80)\n4. Cheap Meal($25)\n')
             if inpt == "1":
-                mainCharacter.money = mainCharacter.money - 200
+                mainCharacter.money = mainCharacter.money - 75
                 print "you are dining most exquisitly on \"Masa\" food. Your health is now +40"
                 mainCharacter.health = mainCharacter.health + 40
             elif inpt == "2":
-                mainCharacter.money = mainCharacter.money - 500
+                mainCharacter.money = mainCharacter.money - 100
                 print "you are dining most exquisitly on \"SubliMotion\" food. Your health is now +60"
                 mainCharacter.health = mainCharacter.health + 60
             elif inpt == "3":
-                mainCharacter.money = mainCharacter.money - 350
-                print "you are dining most exquisitly on \"Masa\" food. Your health is now +55"
-                mainCharacter.health = mainCharacter.health + 55
+                mainCharacter.money = mainCharacter.money - 80
+                print "you are dining most exquisitly on \"Masa\" food. Your health is now +50"
+                mainCharacter.health = mainCharacter.health + 50
+            elif inpt == "4":
+                mainCharacter.money = mainCharacter.money - 25
+                print "You are dining on cheap crap food! you have gained +15"
+                mainCharacter.health = mainCharacter.health + 15
         elif inpt == "3":
             print "you have opened a store. Every time a customer comes in and buys something, you will get money!"
             mainCharacter.store()
@@ -503,17 +506,20 @@ class Character:
                     break
                 elif inpt == "2":
                     continue
-        if inpt == "2":
-            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n')
+        elif inpt == "2":
+            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n3. Fidgura($50)\n')
             if inpt == "1":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Gabrieapolis()
             if inpt == "2":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Zschorlau()
+            if inpt == "3":
+                print "Ok. Boarding... You have arrived!"
+                self.city = Fidgura()
             self.money = mainCharacter.money - 50
 
-        if inpt == "3":
+        elif inpt == "3":
             print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 1 damage"
             mainCharacter.damage = mainCharacter.damage + 1
 
@@ -555,7 +561,7 @@ class Rogue(Character):
         self.damage = 5
         self.weapon = self.tempWeapon
         self.rogueMode = False
-        print "You have untransformed back into your sneaky, lying, backstabbing self by putting your awsome hood on!!!"
+        print "You have untransformed back into your sneaky, lying, backstabbing self!!!"
 
 class Werewolf(Character): 
     name = "Wolverine"
@@ -628,17 +634,17 @@ while True:
         inpt = raw_input('which character would you like to be\n1. Knight\n2. Werewolf\n3. Rogue\n')
         if inpt == "1":
             mainCharacter = Knight()
-            print "you have choosen the path of the knight, the bravest of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+            print "you have choosen the path of the knight, the bravest and most couragous of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\""
         if inpt == "2":
             mainCharacter = Werewolf()
-            print "you have chosen the path of the werewolf, the strongest and most vicious of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+            print "you have chosen the path of the werewolf, the strongest and most vicious of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\""
         if inpt == "3":
             mainCharacter = Rogue()
-            print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed.If you want to know how much health you have, type \'how much health do I have\' or \'what is my health\'. If you want to know how much money you have, type \'how much money do I have. \'"
+            print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\""
 
         
     elif inpt == "show stats":
-        print "health = ", mainCharacter.health,"\nmoney = ", mainCharacter.money, "\nmana = ", mainCharacter.mana, "\nyour weapons = ", mainCharacter.weapon, "\ndamage = ", mainCharacter.damage
+        print "health = ", mainCharacter.health,"\nmoney = ", mainCharacter.money, "\nmana = ", mainCharacter.mana, "\nyour weapons = ", mainCharacter.weapon, "\nwhere you are = ", mainCharacter.city,  "\ndamage = ", mainCharacter.damage
     elif inpt == "potions":
         inpt = raw_input ('here are your potions; which would you like to use:\n1.Healthpotion\n2.Manapotion\n3.Suicidepotion\n4.Money\n')
         if inpt == "1":

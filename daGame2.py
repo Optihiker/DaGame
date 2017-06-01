@@ -183,7 +183,7 @@ class flamingBaseball(Weapon):
 
 class atomicSpinner(Weapon):
     damage = 250
-    cost = 500
+    cost = 450
     crit = 10
     name = "Atomic Spinner"
 
@@ -245,7 +245,7 @@ class Battle:
         inpt = raw_input ('what would you like to do:\n1.fight\n2.run\n')
         if inpt == "fight" or inpt == "1":
             list = []
-            numen = random.randint(1, 9)
+            numen = random.randint(1, 5)
             index = 0
             while index < numen:
                 enmy = random.randint(1, 2)
@@ -254,18 +254,10 @@ class Battle:
                 elif enmy == 2:
                     list.append(Zombie())
                 elif enmy == 3:
-                    list.append(Barbarian())
+                    list.append(Zombie())
                 elif enmy == 4:
                     list.append(Barbarian())
                 elif enmy == 5:
-                    list.append(Zombie())
-                elif enmy == 6:
-                    list.append(Barbarian())
-                elif enmy == 7:
-                    list.append(Zombie())
-                elif enmy == 8:
-                    list.append(Barbarian())
-                elif enmy == 9:
                     list.append(Zombie())
 
                 index = index + 1
@@ -350,7 +342,7 @@ class Character:
     blockChance = 50
     health = 100
     city = Boston()
-    money = 100
+    money = 200
     weapon = None
     chestpiece = None
     helmet = None
@@ -670,7 +662,6 @@ while True:
     if mainCharacter.health <=0:
         while True:
             x = raw_input ('YOU DIED! EXIT TERMINAL AND COME BACK TO PLAY AGAIN!')
-            break
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

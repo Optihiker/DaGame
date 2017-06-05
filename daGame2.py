@@ -125,7 +125,6 @@ class Inventory:
             Suicidepotion.equip()
         elif self.bag[key] != None:
             self.bag[key].equip(key)
-            mainCharacter.damage = mainCharacter.weapon.damage
         elif inpt == "":
             print "Pick again! There's no item in that spot!"
 
@@ -374,9 +373,9 @@ class Dragon(Enemy):
     damage = 40
     name = "Dragon"
     def __init__(self):
-        print "I will claw you to shreds, and roast you with fire. I am a dragon!"
+        print "I will claw you to shreds and roast you with fire. I am a dragon!"
         
-class Character:
+class Character():
     dodgeChance = 50
     blockChance = 50
     health = 150
@@ -641,9 +640,12 @@ while True:
             mainCharacter = Rogue()
             print "you have chosen the path of the rogue, the most tactical and stealthy of the trisquod. Green blob zombies are attacking Manhattan. Get help from the master wizard. Fight the zombies, or Humanity will be destroyed. If you want to know how much money, health, mana... you have, type \"show stats\""
 
-        
+
     elif inpt == "show stats":
-        print "health = ", mainCharacter.health,"\nmoney = ", mainCharacter.money, "\nmana = ", mainCharacter.mana, "\nyour weapons = ", mainCharacter.weapon, "\nwhere you are = ", mainCharacter.city,  "\ndamage = ", mainCharacter.damage
+        if mainCharacter.weapon == None:
+            print "health = ", mainCharacter.health,"\nmoney = ", mainCharacter.money, "\nmana = ", mainCharacter.mana, "\nwhere you are = ", mainCharacter.city.name,  "\ndamage = ", mainCharacter.damage
+        else:
+            print "health = ", mainCharacter.health,"\nmoney = ", mainCharacter.money, "\nmana = ", mainCharacter.mana, "\nyour weapons = ", mainCharacter.weapon.name, "\nwhere you are = ", mainCharacter.city.name,  "\ndamage = ", mainCharacter.weapon.damage
     elif inpt == "potions":
         inpt = raw_input ('here are your potions; which would you like to use:\n1.Healthpotion\n2.Manapotion\n3.Suicidepotion\n4.Money\n')
         if inpt == "1":

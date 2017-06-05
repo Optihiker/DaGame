@@ -85,7 +85,7 @@ class WeaponShop:
         inpt = raw_input("What would you like to buy?\n")
         if inpt == "none" or inpt == "None":
             print "Then why did you come here? Get out! I'm disgusted!"
-            pass
+            return
         inpt = int(inpt)
         item = mainCharacter.city.weapons[inpt - 1] 
         if mainCharacter.money < item.cost:

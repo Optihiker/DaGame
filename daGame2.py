@@ -285,13 +285,13 @@ class Battle:
                 elif enmy == 2:
                     list.append(Zombie())
                 elif enmy == 3:
-                    list.append(Zombie())
+                    list.append(Dragon())
                 elif enmy == 4:
                     list.append(Barbarian())
                 elif enmy == 5:
                     list.append(Zombie())
                 elif enmy == 6:
-                    list.append(Dragon())
+                    list.append(Zombie())
 
                 index = index + 1
 
@@ -378,7 +378,7 @@ class Dragon(Enemy):
 class Character():
     dodgeChance = 50
     blockChance = 50
-    health = 150
+    health = 200
     city = Boston()
     money = 200
     weapon = None
@@ -468,7 +468,7 @@ class Character():
             mainCharacter.money = mainCharacter.money + 50
           
     def masterWizard(self):
-        inpt = raw_input ('Hello, little one. I can help you with these things:\n 2. go to a nice restaurant\n 3. Open a store to get money. \n Which would you like to do?\n')
+        inpt = raw_input ('Hello, little one. I can help you with these things:\n 1. go to a nice restaurant\n 2s. Open a store to get money. \n Which would you like to do?\n')
         if inpt == "none" or inpt == "None":
             pass
         elif inpt == "2":

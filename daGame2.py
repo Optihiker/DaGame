@@ -279,7 +279,7 @@ class Battle:
             numen = random.randint(6, 6)
             index = 0
             while index < numen:
-                enmy = random.randint(1, 2)
+                enmy = random.randint(1, 3)
                 if enmy == 1:
                     list.append(Barbarian())
                 elif enmy == 2:
@@ -505,16 +505,20 @@ class Character():
                 elif inpt == "2":
                     continue
         elif inpt == "2":
-            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n3. Fidgura($50)\n')
+            inpt = raw_input('here are the flights available:\n1. Gabrieapolis($50)\n2. Zschorlau($50)\n3. Fidgura($50)\n4. Boston($50)\n')
             if inpt == "1":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Gabrieapolis()
-            if inpt == "2":
+            elif inpt == "2":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Zschorlau()
-            if inpt == "3":
+            elif inpt == "3":
                 print "Ok. Boarding... You have arrived!"
                 self.city = Fidgura()
+            elif inpt == "4":
+                print "Ok. Boarding... You have arrived!"
+                self.city = Boston()
+
             self.money = mainCharacter.money - 50
 
         elif inpt == "3":

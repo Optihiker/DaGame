@@ -125,10 +125,9 @@ class Inventory:
             Suicidepotion.equip()
         elif self.bag[key] != None:
             self.bag[key].equip(key)
-        elif inpt == "":
-            print "Pick again! There's no item in that spot!"
         else:
             print "Pick again! There's no item in that spot!"
+            return
         
 class Potion:
     def equip(self, key):
@@ -163,12 +162,12 @@ class Armor():
         mainCharacter.equip(self)
 
 class Helmet(Armor):
-    impactpower = 2
+    impactpower = 10
     cost = 30
     name = "Helmet"
 
 class Chestpiece(Armor):
-    impactpower = 2
+    impactpower = 7
     cost = 30
     name = "Chestpiece"
 
@@ -272,10 +271,10 @@ class Battle:
 
     def __init__(self):
         print "FIGHT!"
-        inpt = raw_input ('what would you like to do:\n1.fight\n2.run\n')
+        inpt = raw_input ('what would you like to do:\n1.Fight\n2.Run\n')
         if inpt == "fight" or inpt == "1":
             list = []
-            numen = random.randint(6, 6)
+            numen = random.randint(1, 6)
             index = 0
             while index < numen:
                 enmy = random.randint(1, 3)
@@ -312,6 +311,7 @@ class Battle:
                         mainCharacter.specialMove(self.chooseEnemy(list))
                 elif inpt =="3":
                     mainCharacter.Inventory.Openbag()
+                    
 
                    
                 #Enemy attack phase
@@ -333,7 +333,9 @@ class Battle:
                         if mainCharacter.parry() == False:
                             enemy.attack(mainCharacter)
                     else:
-                        print "check your spelling!"
+                        print "check your spelling! You have gotten attacked because of you horrible typing!"
+                        enemy.attack(mainCharacter)
+        
         if isinstance(mainCharacter, Werewolf):
             if mainCharacter.werewolfMode == True:
                 mainCharacter.untransform()
@@ -523,6 +525,37 @@ class Character():
         elif inpt == "3":
             print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 1 damage"
             mainCharacter.damage = mainCharacter.damage + 1
+    def specialOffer(self):
+        if random.randint(1, 3) < 2:
+            inpt = raw_input ('There is a special deal for a health potion in the city of Gabrieapolis. You get a free flight to Gabrieapolis and don\'t have to go to the Inventory to equip the potion. You can buy it and your mana will go down to 200, but you don\'t have to pay money! Would you like to\n1. Go there and buy\n2. Stay and miss out\n')
+            if inpt == "1":
+                mainCharacter.city = Gabrieapolis()
+                mainCharacter.mana = 200
+                mainCharacter.health = mainCharacter.health + 50
+                print "You have traveled to Gabrieapolis for free and have gotten +50 health"
+                print "Nice negotiating! You have earned a inexpensive Health Potion!"
+            else:
+                print "Too bad, loser! You missed out!"
+        elif random.randint(1,3) > 2:
+            inpt = raw_input('There is a special deal for a Gold Minigun in the city of Zschorlau. You get a free flight to Zschorlau and don\'t have to go to the Inventory to equip the weapon. You can buy it and your mana will go down to 200, but you don\'t have to pay money! However, you can not buy another weapon and then one back to this one; it will dissolve when you put it down. Would you like to\n1. Go there and buy\n2. Stay and miss out\n')
+            if inpt == "1":
+                mainCharacter.city = Zschorlau( )
+                mainCharacter.mana = 200
+                mainCharacter.weapon = goldMinigun()
+                print "You have traveled to Fidgura for free and gotten a new weapon!"
+                print "Nice negotiating! You have earned a inexpensive atomic spinner!"
+            else:
+                print "Too bad, loser! You missed out!"
+        else:
+            inpt = raw_input('There is a special deal for a atomic spinner potion in the city of Fidgura. You get a free flight to Fidgura and don\'t have to go to the Inventory to equip the weapon. You can buy it and your mana will go down to 200, but you don\'t have to pay money! However, you can not buy another weapon and then one back to this one; it will dissolve when you put it down. Would you like to\n1. Go there and buy\n2. Stay and miss out\n')
+            if inpt == "1":
+                mainCharacter.city = Fidgura()
+                mainCharacter.mana = 200
+                mainCharacter.weapon = atomicSpinner()
+                print "You have traveled to Fidgura for free and gotten a new weapon!"
+                print "Nice negotiating! You have earned a inexpensive atomic spinner!"                    
+            else:
+                print "Too bad, loser! You missed out!"
 
 class Devil(Character):
     name = "Devil"
@@ -554,7 +587,9 @@ class Rogue(Character):
             mainCharacter.mana = mainCharacter.mana - 15
             if random.randint(1,6) >=3:
                 enemy.damage = 0
-                print "Now you have transformed into a rogue that prevents your enemies from doing any damage"
+                mainCharacter.health = mainCharacter.health + 20
+                print "Now you have transformed into a rogue that prevents your enemies from doing any damage. And you get +20 health!"
+
             else:
                 print "you failed your special move!!!"
 
@@ -577,8 +612,8 @@ class Werewolf(Character):
             mainCharacter.mana = mainCharacter.mana - 15
             if random.randint(1,6) >=3:
 
-                print "You have transformed into a scary werewolf! Now your attack power is 100 damage!"
-                self.damage = 150
+                print "You have transformed into a scary werewolf! Now your attack power is + 100 damage!"
+                self.damage = self.damage + 100
                 self.tempWeapon = self.weapon
                 self.weapon = None
 
@@ -667,46 +702,18 @@ while True:
         elif inpt == "5":
             mainCharacter.health = mainCharacter.health - 89
         elif inpt == "6":
-            mainCharacter.money = mainCharacter.money - 220
-
-    if mainCharacter.money < 10:
-        if random.randint(1, 2) < 1:
-            inpt = raw_input('There is a special deal for a health potion in the city of Gabrieapolis. It is only 35 dollars! Would you like to\n1. Go there and buy\n2. Stay and miss out\n')
-            if inpt == "1":
-                mainCharacter.city = Gabrieapolis()
-                mainCharacter.money = mainCharacter.money - 35
-                print "You have traveled to Gabrieapolis for free and have gotten +50 health\n"
-                print "Nice negotiating! You have earned a inexpensive Health Potion!"
-                mainCharacter.health = mainCharacter.health + 50
-                mainCharacter.money = 11
-            else:
-                print "Too bad, loser!"
-        else:
-            inpt = raw_input('There is a special deal for a atomic spinner potion in the city of Fidgura. It is only 35 dollars! Would you like to\n1. Go there and buy\n2. Stay and miss out\n')
-            if inpt == "1":
-                if mainCharacter.weapon == None:
-                    mainCharacter.city = Fidgura()
-                    mainCharacter.money = mainCharacter.money - 35
-                    mainCharacter.damage = mainCharacter.damage + 245
-                    mainCharacter.money = 11
-                    print "You have traveled to Fidgura for free and gotten a new weapon!"
-                    print "Nice negotiating! You have earned a inexpensive atomic spinner!"
-                else:
-                    mainCharacter.city = Fidgura()
-                    mainCharacter.money = mainCharacter.money - 35
-                    mainCharacter.damage = 250
-                    mainCharacter.money = 11
-                    print "You have traveled to Fidgura for free and gotten a new weapon!"
-                    print "Nice negotiating! You have earned a inexpensive atomic spinner!"                    
-            else:
-                print "Too bad, loser!"
-
-
+            mainCharacter.money = mainCharacter.money - 195
     elif inpt == "":
         print "What's the matter with you, spell it right!!!"
     if mainCharacter.health <=0:
         while True:
             x = raw_input ('YOU DIED! EXIT TERMINAL AND COME BACK TO PLAY AGAIN!')
+
+    if mainCharacter.mana >= 201:
+        mainCharacter.specialOffer()
+
+
+    
 
 #list of things that we want to do:
 #1.break up the code into several files to make it easier to orginize

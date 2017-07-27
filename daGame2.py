@@ -523,8 +523,11 @@ class Character():
             self.money = mainCharacter.money - 50
 
         elif inpt == "3":
-            print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 1 damage"
-            mainCharacter.damage = mainCharacter.damage + 1
+            print "walking to the gym... Ok, You are breaking a sweat. Doing pull-ups... Doing push-ups... Running on the treadmill... Exercise complete! Your muscles are looking mighty big. You have gained + 2 damage"
+            if mainCharacter.weapon == None:
+                mainCharacter.damage = mainCharacter.damage + 2
+            else:
+                mainCharacter.weapon.damage = mainCharacter.weapon.damage + 2
 
 class Devil(Character):
     name = "Devil"

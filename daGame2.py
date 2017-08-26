@@ -315,7 +315,7 @@ class Battle:
                     
             while len(list) > 0:
                 #Your attack phase
-                inpt = raw_input ('1. attack\n2. use special move\n3. Open Bag\n')
+                inpt = raw_input ('1. attack\n2. use special move\n3. Open Bag\n4. flee\n')
 
 
                 if inpt == "1":
@@ -329,6 +329,14 @@ class Battle:
                         mainCharacter.specialMove(self.chooseEnemy(list))
                 elif inpt =="3":
                     mainCharacter.Inventory.Openbag()
+                elif inpt == "4":
+                    if mainCharacter.weapon != None:
+                        print "your stats are:\nhealth = ", mainCharacter.health, "\nmana = ", mainCharacter.mana, "\nmoney = ", mainCharacter.money, "\ndamage = ", mainCharacter.weapon.damage, "\nYou are a coward! You fled! Come back and face your destiny!"
+                    else:
+                        print "your stats are:\nhealth = ", mainCharacter.health, "\nmana = ", mainCharacter.mana, "\nmoney = ", mainCharacter.money, "\ndamage = ", mainCharacter.damage, "\nYou are a coward! You fled! Come back and face your destiny!"
+
+                    return
+
 
                    
                 #Enemy attack phase
